@@ -1,0 +1,394 @@
+/* Reset margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* General page layout */
+.dashboard-page {
+    margin-top: 60px; /* Space below the header */
+    padding: 16px;
+    background-color: #f8f9fa;
+}
+
+/* Header Section */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 8px 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+/* Menu Button */
+.dashboard-menu-btn {
+    font-size: 24px;
+    padding: 8px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Logo */
+.dashboard-logo {
+    max-width: 80px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Title */
+.dashboard-title {
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+.sidebar.open {
+    left: 0;
+}
+
+/* Dashboard Overview Section */
+.dashboard-overview {
+    margin-top: 32px;
+}
+
+.overview-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.overview-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.overview-card {
+    flex: 1;
+    margin: 8px;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.dark-red {
+    background-color: #b00d0d;
+    color: #ffffff;
+}
+
+.dark-gray {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* My Courses Section */
+.dashboard-courses {
+    margin-top: 32px;
+}
+
+.courses-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.course-card {
+    flex: 1;
+    margin: 8px;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.course-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Footer Section */
+.dashboard-footer {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.dashboard-contact-info {
+    text-align: center;
+}
+
+
+
+.dashboard-welcome {
+    
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.welcome-title {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    color: #b00d0d; /* Change the color as desired */
+    font-family: "Arial", sans-serif; /* Update to a specific font-family */
+    margin-bottom: 16px;
+}
+
+.welcome-image {
+    margin-top: -30px;
+    width: 100%;
+    height: 300px;
+    max-width: 700px; /* Adjust as needed */
+    border-radius: 8px;
+}
+
+/* Recently Accessed Courses Section */
+.recent-courses-section {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.recent-courses-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.recent-courses-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.recent-courses-list {
+    display: flex;
+    overflow: hidden;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.course2-card {
+    flex: 1;
+    margin: 8px;
+    padding: 16px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.course-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.nav-btn {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    margin: 0 8px;
+}
+
+.prev-btn {
+    margin-right: auto;
+}
+
+.next-btn {
+    margin-left: auto;
+}
+
+.progress-bar-container {
+    margin-top: 8px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #b00d0d;
+    border-radius: 4px;
+}
+
+
+
+/* Two-Column Layout */
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px auto;
+    width: 80%;
+}
+
+/* Main Content Section (Larger Column) */
+.main-content {
+    flex: 3;
+    margin-right: 16px;
+}
+
+/* Sidebar (Smaller Column) */
+.sidebar-info {
+    
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Sidebar Widgets */
+.upcoming-events {
+    
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.latest-badges {
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left; /* Aligns items to the left */
+}
+
+.info-title {
+    color: #b00d0d;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.latest-badges ul, .calendar ul, .upcoming-events ul {
+    list-style: none;
+    padding: 0;
+}
+
+.latest-badges li, .calendar li, .upcoming-events li {
+    margin: 8px 0;
+}
+
+.badges-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.badges-list li {
+    display: flex; /* Allows the icon and text to align horizontally */
+    align-items: center;
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.badge-icon {
+    margin-right: 8px; /* Adds space between the icon and the certification text */
+    color: #f39c12; /* Customize the badge icon color */
+    font-size: 1.25rem;
+}
+
+
+
+
+
+
+/* Calendar Section */
+.calendar {
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+
+/* Customize react-calendar styles */
+.react-calendar {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    background-color: #ffffff;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.react-calendar__navigation button {
+    background: none;
+    border: none;
+    color: #b00d0d;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 4px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #b00d0d; /* Customize the color of weekend days */
+}
+
+.react-calendar__tile {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background-color: #f3ebeb;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    font-size: 13px; /* Adjust the font size as needed */
+    margin-bottom: 3px;
+    
+}
+.react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none; /* Remove underline */
+    border-bottom: none; /* Remove border */
+}
+
+.react-calendar__tile--now {
+    background-color: #774446;
+    color: #000000;
+    font-weight: bold;
+}
+
+.react-calendar__tile--active {
+    background-color: #b00d0d;
+    color: #ffffff;
+    font-weight: bold;
+}

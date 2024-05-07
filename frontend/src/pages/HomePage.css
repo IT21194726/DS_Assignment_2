@@ -1,0 +1,112 @@
+/* Reset the default margin and padding of the page */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* General page layout */
+.homepage {
+
+    padding-right: 20px;
+    background-color: #ffffff; /* Adjust background color as needed */
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding-bottom: 20px;
+    position: fixed;
+    width: 100%;
+    
+    z-index: 1000; /* Ensure it is above all other elements */
+    height: 100px; /* Adjust header height as needed */
+}
+
+/* Menu Button Styling */
+.menu-btn {
+    font-size: 24px;
+    padding: 8px;
+    background-color: #f0f0f0; /* Adjust button color */
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+
+.homelogo {
+    max-width: 120px; /* Adjust the maximum width */
+    max-height: 120px; /* Adjust the maximum height */
+    width: auto;
+    height: auto;
+    margin-right: 10px; /* Space between logo and title */
+}
+
+/* Title Styling */
+.title2 {
+    font-size: 2rem; /* Adjust font size as needed */
+    margin: 0;
+    line-height: 1.2;
+    color: #b00d0d;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background-color: #b00d0d; /* Adjust button color */
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 1000px; /* Adjust the max width */
+}
+
+.hero-content {
+    margin-top: 16px;
+    text-align: center;
+}
+
+/* IT Industry Section */
+.it-industry {
+    margin: 32px 0;
+}
+
+.industry-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.industry-card {
+    flex: 1;
+    margin: 16px;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
