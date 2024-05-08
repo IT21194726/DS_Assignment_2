@@ -5,7 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import SiteHome from "./pages/SiteHome";
 import Dashboard from "./pages/Dashboard";
-
+import Test from "./pages/test"
 
 
 
@@ -19,7 +19,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/sitehome" element={<SiteHome />} />
         <Route path="/dashboard" element={<Dashboard />} />
-       
+        <Route path="/test" element={<Test />} />
         
         
       </Routes>
