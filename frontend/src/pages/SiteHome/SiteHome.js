@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SiteHome.css";
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../../components/Sidebar';
 
 function HomePage() {
     const [sidebarVisible, setSidebarVisible] = useState(false);
