@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import HomePage from "./pages/HomePage";
-import SiteHome from "./pages/SiteHome";
-import Dashboard from "./pages/Dashboard";
+import LoginPage from "./pages/Login/LoginPage";
+import SignUpPage from "./pages/SignUp/SignUpPage";
+import HomePage from "./pages/HomePage/HomePage";
+import SiteHome from "./pages/SiteHome/SiteHome";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import Test from "./pages/test"
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import { FaMedal } from "react-icons/fa"; 
 import Calendar from "react-calendar"; 
 
