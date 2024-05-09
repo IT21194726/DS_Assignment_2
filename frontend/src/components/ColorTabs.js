@@ -23,7 +23,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3 , backgroundColor:'white' }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -63,16 +63,16 @@ export default function BasicTabs({ id }) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Overview" {...a11yProps(0)} />
-          <Tab label="Content" {...a11yProps(1)} />
-          <Tab label="Reviews" {...a11yProps(2)} />
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' , }}>
+        <Tabs   value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab sx={{fontWeight:'bold' , }} label="Overview" {...a11yProps(0)} />
+          <Tab sx={{fontWeight:'bold'}}  label="Content" {...a11yProps(1)} />
+          <Tab sx={{fontWeight:'bold'}}  label="Reviews" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-         {/* Display the selected course details */}
-         {selectedCourse ? (
+        {/* Display the selected course details */}
+        {selectedCourse ? (
           <CourseDetails
             overviewContent={selectedCourse.overview}
             outcomes={selectedCourse.outcomes}
@@ -82,9 +82,11 @@ export default function BasicTabs({ id }) {
           <Typography variant="body1">No matching course found for the provided ID.</Typography>
         )}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <h2>Course Content</h2>
-        <Accor />
+      <CustomTabPanel value={value} index={1}  >
+        <Typography variant="h6" component="h2" gutterBottom sx={{ fontWeight: 'bold' }}>
+          Course Content
+        </Typography>
+        <Accor courseContent={selectedCourse.content} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Box sx={{}}>

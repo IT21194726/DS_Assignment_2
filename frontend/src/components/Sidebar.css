@@ -1,7 +1,6 @@
 /* Sidebar.css */
 
-/* Sidebar.css */
-
+/* Sidebar styling */
 .sidebar {
     align-items: center; /* Center horizontally */
     width: 250px;
@@ -15,12 +14,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Slide in */
 .sidebar.open {
     left: 0; /* Slides into view */
 }
 
-
-/* Ensure the sidebar doesn't overlap the header */
+/* Header has higher z-index to ensure visibility */
 .header {
     z-index: 2000;
     position: relative;
