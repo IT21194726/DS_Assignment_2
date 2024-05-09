@@ -16,21 +16,21 @@ const CourseDetails = ({ overviewContent, outcomes, structure }) => {
             </Typography>
 
             {/* Target Audience */}
-            <Typography variant="h6" component="h4" gutterBottom>
+            <Typography variant="h6" component="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Intended Learning Outcomes:
             </Typography>
             <List>
                 {outcomes.map((item, index) => (
                     <ListItem key={index}>
                         <ListItemIcon>
-                            <CheckCircleIcon sx={{color:'brown' , marginLeft:2.5}}   fontSize="small" />
+                            <CheckCircleIcon sx={{color:'#0096FF' , marginLeft:2.5}}   fontSize="small" />
                         </ListItemIcon>
                         <ListItemText primary={item} />
                     </ListItem>
                 ))}
             </List>
             {/* course structure */}
-            <Typography variant="h6" component="h4" gutterBottom>
+            <Typography variant="h6" component="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Course Structure:
             </Typography>
             <Typography variant="body1" paragraph sx={{ textAlign: 'justify' }}>

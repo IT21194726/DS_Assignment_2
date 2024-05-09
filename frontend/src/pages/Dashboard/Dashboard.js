@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const recentCourses = [
   {
     id: 1,
-    title: "Web Development - 1",
+    title: "Web Development",
     category: "Trainee - Full Stack Developer",
     progress: 100,
     image: "https://www.achieversit.com/uploads/course_image/web-dev-img.jpeg",
   },
   {
     id: 2,
-    title: "Registration for Project Management",
+    title: "Project Management",
     category: "Project Management",
     progress: 20,
     image: "https://uom.lk/sites/default/files/becon/images/Picture2_0.png",
@@ -38,7 +38,7 @@ function Dashboard() {
   const handleNavigation = (courseTitle, image, id) => {
     console.log('you clicked div tag:', courseTitle)
     // Navigate to '/test' and pass the course title as state
-    navigate('/test', { state: { course : courseTitle , image: image, id : id} });
+    navigate('/course', { state: { course: courseTitle, image: image, id: id } });
   }
   // Navigation functions for recently accessed courses
   const handleNext = () => {
@@ -61,7 +61,8 @@ function Dashboard() {
   };
 
   return (
-    <div className={`homepage ${sidebarVisible ? "with-sidebar" : ""}`}>
+    <div  className={`homepage ${sidebarVisible ? "with-sidebar" : ""}`}>
+
       <header className="header">
         <div className="header-content">
           <button className="menu-btn" onClick={toggleSidebar}>
@@ -71,7 +72,6 @@ function Dashboard() {
           <h1 className="title">EduHub - Open Learning Platform</h1>
         </div>
       </header>
-
       <Sidebar isOpen={sidebarVisible} />
 
       {/* Two-column Layout */}
@@ -121,7 +121,7 @@ function Dashboard() {
             <h2 className="overview-title">Course Overview</h2>
             <div className="course-cards">
               {recentCourses.map((course, index) => (
-                <div className="course-card" key={index} onClick={() => handleNavigation(course.title,course.image,course.id)}>
+                <div className="course-card" key={index} onClick={() => handleNavigation(course.title, course.image, course.id)}>
                   <img src={course.image} alt={course.title} />
                   <h5>{course.title}</h5>
                   <p>{course.category}</p>
