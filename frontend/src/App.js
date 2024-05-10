@@ -9,7 +9,11 @@ import SiteHome from "./pages/SiteHome/SiteHome";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseDetailsPage from "./pages/CourseDetailsPage/CourseDetailsPage";
 import CourseContentPage from "./pages/CourseContentPage/CourseContentPage"
-
+import InstructorDashboard from "./pages/Instructor/InstructorDashboard/InstructorDashboard";
+import AddCourse from "./pages/Instructor/AddCourse/AddCourse";
+import InstructorViewCourses from "./pages/Instructor/InstructorViewCourses/InstructorViewCourses";
+import InstructorLearnerProgress from "./pages/Instructor/InstructorLearnerProgress/InstructorLearnerProgress";
+import EditCourse from "./pages/Instructor/EditCourse/EditCourse";
 
 function App() {
   return (
@@ -23,6 +27,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/course" element={<CourseDetailsPage />} />
         <Route path="/content" element={<CourseContentPage />} />
+        <Route path="/instructordashboard" element={<InstructorDashboard />} />
+        <Route path="/addcourse" element={<AddCourse />} />
+        <Route path="/instructorviewcourses" element={<InstructorViewCourses />} />
+        <Route path="/instructorlearnerprogress" element={<InstructorLearnerProgress />} />
+        <Route path="/editcourse/:courseId" element={<EditCourse/>}/>
         
       </Routes>
     </Router>

@@ -1,0 +1,256 @@
+/* Main Page Layout */
+.instructor-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  
+  
+  .with-sidebar  {
+    margin-left: 0;
+  }
+
+  .aa  {
+    font-size: 2em;
+  }
+  
+ 
+  
+  /* Basic Info Section */
+  .basic-info, .outcomes-structure, .main-topics, .quiz-box {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .basic-info label, .outcomes-structure label, .main-topics label, .quiz-box label {
+    display: block;
+    margin: 8px 0;
+    font-weight: bold;
+  }
+  
+  .basic-info input[type="text"], .outcomes-structure input[type="text"], .main-topics input[type="text"],
+  .quiz-box input[type="text"], .basic-info textarea, .outcomes-structure textarea, .main-topics textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #b0b0b0;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    background-color: #f4f4f4;
+  }
+  
+  .basic-info input[type="file"], .outcomes-structure input[type="file"], .main-topics input[type="file"] {
+    margin-top: 4px;
+    border: 1px solid #b0b0b0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f4f4f4;
+  }
+  
+  .basic-info input:focus, .outcomes-structure input:focus, .main-topics input:focus,
+  .quiz-box input:focus, .basic-info textarea:focus, .outcomes-structure textarea:focus, .main-topics textarea:focus {
+    border-color: #3498db;
+    background-color: #e6f4ff;
+  }
+  
+  .basic-info h3, .outcomes-structure h3, .main-topics h3, .quiz-box h3, .main-topics h5 {
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  /* Main Topic, Subtopic, Quiz */
+  .topic-box, .subtopic-box, .quiz-box {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .topic-box button, .subtopic-box button, .quiz-box button {
+    padding: 8px 15px;
+    background-color: #071a0e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+  
+  .topic-box button:hover, .subtopic-box button:hover, .quiz-box button:hover {
+    background-color: #0c4d25;
+  }
+  
+  .quiz-box h6 {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .quiz-box input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #b0b0b0;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+  }
+  
+
+
+  .add-course-container {
+    display: flex;
+    transition: all 0.3s ease-in-out;
+  }
+  
+ 
+  
+  .sidebar-open {
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  }
+  
+  .main-content {
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    width: 100%; 
+    overflow: hidden; 
+  }
+  
+  /* Adjusted Page Layout */
+.add-course-page {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .header {
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Adjusted Page Layout */
+.add-course-page {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+}
+
+.header {
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+.shifted {
+  margin-left: 250px; /* Sidebar width */
+  width: calc(100% - 250px); /* Adjust to remaining screen size */
+}
+
+.main-content {
+  transition: all 0.3s ease-in-out;
+  flex-grow: 1;
+  margin-left: 0;
+  padding: 20px;
+  overflow: hidden;
+}
+
+ .main-content {
+  margin-left: 250px; /* Adjust to sidebar width */
+  width: calc(100% - 250px);
+}
+
+
+  
+  .shifted {
+    margin-left: 250px; /* Sidebar width */
+    width: calc(100% - 250px); /* Adjust to remaining screen size */
+  }
+  
+  .main-content {
+    transition: all 0.3s ease-in-out;
+    flex-grow: 1;
+    margin-left: 0;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .with-sidebar .main-content, .with-sidebar .header {
+    /* Adjust to sidebar width */
+    width: calc(100% - 250px);
+  }
+  
+ 
+  .with-sidebar .mmain-content{
+    margin-left: 250px;
+  }
+
+  /* AddCourse.css */
+.step-content input[type="text"],
+.step-content input[type="file"],
+.step-content textarea {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 100px;
+  border: 2px solid #b23b3b; /* Red border */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.step-content input:focus,
+.step-content textarea:focus {
+  border-color: #e44d4d; /* Lighter shade of red when focused */
+  outline: none;
+}
+
+.stepper-buttons button {
+  background-color: #b23b3b; /* Button color */
+  color: #fff;
+  padding: 16px 26px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.stepper-buttons button:hover {
+  background-color: #e44d4d; /* Darken the button on hover */
+}
+
+
+
+
+
+
+
+ /* Stepper Styles */
+ .step-content {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.MuiStepLabel-label {
+  color: #b23b3b !important; /* !important is used to override the default styling */
+}
+
+/* Change the active step icon color to red */
+.MuiStepIcon-root.Mui-active {
+  color: #b23b3b !important;
+}
+
+/* Change the completed step icon color to red */
+.MuiStepIcon-root.Mui-completed {
+  color: #b23b3b !important;
+}
