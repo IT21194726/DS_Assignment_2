@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.exception;
+package com.eduhub.userservice.exception;
 
 public class ReferenceNotFoundException extends  RuntimeException{
 

@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.entity.authentication;
+package com.eduhub.userservice.entity.authentication;
 
 import jakarta.persistence.*;
 import lombok.Getter;

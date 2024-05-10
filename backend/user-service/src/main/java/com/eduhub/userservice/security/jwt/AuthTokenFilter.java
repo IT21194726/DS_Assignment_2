@@ -1,6 +1,6 @@
-package com.spring.childhealthcare.security.jwt;
+package com.eduhub.userservice.security.jwt;
 
-import com.spring.childhealthcare.security.services.UserDetailsServiceImpl;
+import com.eduhub.userservice.security.services.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,8 +1,8 @@
-package com.spring.childhealthcare.repository.authentication;
+package com.eduhub.userservice.repository.authentication;
 
 
-import com.spring.childhealthcare.entity.authentication.ERole;
-import com.spring.childhealthcare.entity.authentication.Role;
+import com.eduhub.userservice.entity.authentication.ERole;
+import com.eduhub.userservice.entity.authentication.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

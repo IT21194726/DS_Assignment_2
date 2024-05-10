@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.dto.authentication.response;
+package com.eduhub.userservice.dto.authentication.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

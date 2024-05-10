@@ -1,7 +1,7 @@
-package com.spring.childhealthcare.entity.authentication;
+package com.eduhub.userservice.entity.authentication;
 
 public enum ERole {
-  ROLE_PATIENT,
-  ROLE_DOCTOR,
+  ROLE_INSTRUCTOR,
+  ROLE_LEARNER,
   ROLE_ADMIN
 }

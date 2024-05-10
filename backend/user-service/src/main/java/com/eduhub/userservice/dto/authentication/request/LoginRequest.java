@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.dto.authentication.request;
+package com.eduhub.userservice.dto.authentication.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
