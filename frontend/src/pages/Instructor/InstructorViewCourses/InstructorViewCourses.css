@@ -1,0 +1,78 @@
+/* InstructorViewCourses.css */
+
+.ivc-page {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  .ivc-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+    
+
+
+
+  /* Styling specifically for the accordion part */
+
+.ivc-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid #9e2316; /* Red border color */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+    position: relative;
+  }
+  
+  .ivc-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+  
+  .ivc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #000000; /* Red color for the title text */
+  }
+  
+  .ivc-arrow {
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+    font-size: 1.2em; /* Larger arrow icon */
+    color: #000000; /* Red arrow color */
+  }
+  
+  .ivc-arrow.expanded {
+    transform: rotate(180deg);
+  }
+  
+  .ivc-edit-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    margin-right: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #9e2316; /* Red edit icon */
+    font-size: 1.2em;
+    transition: color 0.2s ease;
+  }
+  
+  .ivc-edit-btn:hover {
+    color: #c0392b; /* Darker red on hover */
+  }
+  
+  .ivc-content {
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    color: #666;
+  }
+  
