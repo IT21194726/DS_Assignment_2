@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.controller.authentication;
+package com.eduhub.userservice.controller.authentication;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.exception;
+package com.eduhub.userservice.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.security.jwt;
+package com.eduhub.userservice.security.jwt;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

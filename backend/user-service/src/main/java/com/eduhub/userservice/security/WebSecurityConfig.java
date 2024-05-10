@@ -1,8 +1,8 @@
-package com.spring.childhealthcare.security;
+package com.eduhub.userservice.security;
 
-import com.spring.childhealthcare.security.jwt.AuthEntryPointJwt;
-import com.spring.childhealthcare.security.jwt.AuthTokenFilter;
-import com.spring.childhealthcare.security.services.UserDetailsServiceImpl;
+import com.eduhub.userservice.security.jwt.AuthEntryPointJwt;
+import com.eduhub.userservice.security.jwt.AuthTokenFilter;
+import com.eduhub.userservice.security.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

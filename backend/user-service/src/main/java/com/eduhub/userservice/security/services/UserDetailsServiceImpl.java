@@ -1,7 +1,7 @@
-package com.spring.childhealthcare.security.services;
+package com.eduhub.userservice.security.services;
 
-import com.spring.childhealthcare.entity.authentication.User;
-import com.spring.childhealthcare.repository.authentication.UserRepository;
+import com.eduhub.userservice.entity.authentication.User;
+import com.eduhub.userservice.repository.authentication.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

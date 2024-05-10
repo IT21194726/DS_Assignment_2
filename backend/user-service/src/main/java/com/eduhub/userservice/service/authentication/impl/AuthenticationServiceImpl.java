@@ -1,23 +1,19 @@
-package com.spring.childhealthcare.service.authentication.impl;
+package com.eduhub.userservice.service.authentication.impl;
 
-import com.spring.childhealthcare.common.Constant;
-import com.spring.childhealthcare.dto.DoctorDTO;
-import com.spring.childhealthcare.dto.PatientDTO;
-import com.spring.childhealthcare.dto.authentication.request.LoginRequest;
-import com.spring.childhealthcare.dto.authentication.request.SignupRequest;
-import com.spring.childhealthcare.dto.authentication.response.JwtResponse;
-import com.spring.childhealthcare.dto.authentication.response.MessageResponse;
-import com.spring.childhealthcare.entity.authentication.ERole;
-import com.spring.childhealthcare.entity.authentication.Role;
-import com.spring.childhealthcare.entity.authentication.User;
-import com.spring.childhealthcare.exception.ReferenceNotFoundException;
-import com.spring.childhealthcare.repository.authentication.RoleRepository;
-import com.spring.childhealthcare.repository.authentication.UserRepository;
-import com.spring.childhealthcare.security.jwt.JwtUtils;
-import com.spring.childhealthcare.security.services.UserDetailsImpl;
-import com.spring.childhealthcare.service.DoctorService;
-import com.spring.childhealthcare.service.PatientService;
-import com.spring.childhealthcare.service.authentication.AuthenticationService;
+import com.eduhub.userservice.common.Constant;
+import com.eduhub.userservice.dto.authentication.request.LoginRequest;
+import com.eduhub.userservice.dto.authentication.request.SignupRequest;
+import com.eduhub.userservice.dto.authentication.response.JwtResponse;
+import com.eduhub.userservice.dto.authentication.response.MessageResponse;
+import com.eduhub.userservice.entity.authentication.ERole;
+import com.eduhub.userservice.entity.authentication.Role;
+import com.eduhub.userservice.entity.authentication.User;
+import com.eduhub.userservice.exception.ReferenceNotFoundException;
+import com.eduhub.userservice.repository.authentication.RoleRepository;
+import com.eduhub.userservice.repository.authentication.UserRepository;
+import com.eduhub.userservice.security.jwt.JwtUtils;
+import com.eduhub.userservice.security.services.UserDetailsImpl;
+import com.eduhub.userservice.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +39,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
-    private final DoctorService doctorService;
-    private final PatientService patientService;
 
     @Override
     public ResponseEntity<JwtResponse> authenticateUserDetails(LoginRequest loginRequest) {
@@ -87,7 +81,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_PATIENT)
+            Role userRole = roleRepository.findByName(ERole.ROLE_INSTRUCTOR)
                     .orElseThrow(() -> new RuntimeException("Error: Student role is not available."));
             roles.add(userRole);
         } else {
@@ -98,14 +92,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                                 .orElseThrow(() -> new RuntimeException("Error: Admin role is not found."));
                         roles.add(adminRole);
                     }
-                    case "doctor" -> {
-                        Role modRole = roleRepository.findByName(ERole.ROLE_DOCTOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Doctor role is not found."));
+                    case "instructor" -> {
+                        Role modRole = roleRepository.findByName(ERole.ROLE_INSTRUCTOR)
+                                .orElseThrow(() -> new RuntimeException("Error: Instructor role is not found."));
                         roles.add(modRole);
                     }
                     default -> {
-                        Role userRole = roleRepository.findByName(ERole.ROLE_PATIENT)
-                                .orElseThrow(() -> new RuntimeException("Error: Patient role is not found."));
+                        Role userRole = roleRepository.findByName(ERole.ROLE_LEARNER)
+                                .orElseThrow(() -> new RuntimeException("Error: Learner role is not found."));
                         roles.add(userRole);
                     }
                 }
@@ -113,25 +107,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         user.setRoles(roles);
         String userId = sequentialUserByIdGenerator(roles);
-        if(userId.matches("PT-"+LocalDate.now().getYear()+LocalDate.now().getDayOfMonth()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
+        if(userId.matches("LR-"+LocalDate.now().getYear()+LocalDate.now().getDayOfMonth()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
             user.setUserId(userId);
         } else if (userId.matches("AM-"+LocalDate.now().getYear()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
             user.setUserId(userId);
-        } else if (userId.matches("DC-"+LocalDate.now().getYear()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
+        } else if (userId.matches("IN-"+LocalDate.now().getYear()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
             user.setUserId(userId);
         } else {
             throw new ReferenceNotFoundException("The userId no matches require pattern or the userId is already exist!");
         }
         User savedUser = userRepository.save(user);
-        if (savedUser.getUserId().contains("DC")) {
-            DoctorDTO doctorDTO = new DoctorDTO();
-            doctorDTO.setDoctorId(savedUser.getUserId());
-            doctorService.saveDoctor(doctorDTO);
-        } else if (savedUser.getUserId().contains("PT")) {
-            PatientDTO  patientDTO = new PatientDTO();
-            patientDTO.setPatientId(savedUser.getUserId());
-            patientService.savePatient(patientDTO);
-        }
+//        if (savedUser.getUserId().contains("DC")) {
+//            DoctorDTO doctorDTO = new DoctorDTO();
+//            doctorDTO.setDoctorId(savedUser.getUserId());
+//            doctorService.saveDoctor(doctorDTO);
+//        } else if (savedUser.getUserId().contains("PT")) {
+//            PatientDTO  patientDTO = new PatientDTO();
+//            patientDTO.setPatientId(savedUser.getUserId());
+//            patientService.savePatient(patientDTO);
+//        }
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!", user));
     }
@@ -145,10 +139,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userId = userId.isEmpty()? "0" : userId.substring(userId.length() - 3);
         userNumber = Integer.parseInt(userId);
         userNumber++;
-        if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_PATIENT.name())){
-            userId = String.format(Constant.PATIENT_ID_FORMAT, LocalDate.now().getYear(), LocalDate.now().getDayOfMonth(),userNumber);
-        } else if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_DOCTOR.name())){
-            userId = String.format(Constant.DOCTOR_ID_FORMAT, LocalDate.now().getYear(), userNumber);
+        if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_INSTRUCTOR.name())){
+            userId = String.format(Constant.INSTRUCTOR_ID_FORMAT, LocalDate.now().getYear(), LocalDate.now().getDayOfMonth(),userNumber);
+        } else if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_LEARNER.name())){
+            userId = String.format(Constant.LEARNER_ID_FORMAT, LocalDate.now().getYear(), userNumber);
         } else if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_ADMIN.name())) {
             userId = String.format(Constant.ADMIN_ID_FORMAT, LocalDate.now().getYear(), userNumber);
         }

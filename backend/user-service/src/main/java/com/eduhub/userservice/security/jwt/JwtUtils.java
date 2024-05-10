@@ -1,6 +1,6 @@
-package com.spring.childhealthcare.security.jwt;
+package com.eduhub.userservice.security.jwt;
 
-import com.spring.childhealthcare.security.services.UserDetailsImpl;
+import com.eduhub.userservice.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

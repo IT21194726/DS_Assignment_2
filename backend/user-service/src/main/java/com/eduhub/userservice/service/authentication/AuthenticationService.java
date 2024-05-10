@@ -1,9 +1,9 @@
-package com.spring.childhealthcare.service.authentication;
+package com.eduhub.userservice.service.authentication;
 
-import com.spring.childhealthcare.dto.authentication.request.LoginRequest;
-import com.spring.childhealthcare.dto.authentication.request.SignupRequest;
-import com.spring.childhealthcare.dto.authentication.response.JwtResponse;
-import com.spring.childhealthcare.dto.authentication.response.MessageResponse;
+import com.eduhub.userservice.dto.authentication.request.LoginRequest;
+import com.eduhub.userservice.dto.authentication.request.SignupRequest;
+import com.eduhub.userservice.dto.authentication.response.JwtResponse;
+import com.eduhub.userservice.dto.authentication.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface AuthenticationService {

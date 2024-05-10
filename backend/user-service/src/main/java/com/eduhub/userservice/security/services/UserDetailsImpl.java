@@ -1,7 +1,7 @@
-package com.spring.childhealthcare.security.services;
+package com.eduhub.userservice.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.spring.childhealthcare.entity.authentication.User;
+import com.eduhub.userservice.entity.authentication.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.spring.childhealthcare.common;
+package com.eduhub.userservice.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

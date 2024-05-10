@@ -1,10 +1,10 @@
-package com.spring.childhealthcare.controller.authentication;
+package com.eduhub.userservice.controller.authentication;
 
-import com.spring.childhealthcare.dto.authentication.request.LoginRequest;
-import com.spring.childhealthcare.dto.authentication.request.SignupRequest;
-import com.spring.childhealthcare.dto.authentication.response.JwtResponse;
-import com.spring.childhealthcare.dto.authentication.response.MessageResponse;
-import com.spring.childhealthcare.service.authentication.AuthenticationService;
+import com.eduhub.userservice.dto.authentication.request.LoginRequest;
+import com.eduhub.userservice.dto.authentication.request.SignupRequest;
+import com.eduhub.userservice.dto.authentication.response.JwtResponse;
+import com.eduhub.userservice.dto.authentication.response.MessageResponse;
+import com.eduhub.userservice.service.authentication.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
