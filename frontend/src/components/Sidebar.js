@@ -11,6 +11,8 @@ function Sidebar({ isOpen }) {
                     <li><a href="/sitehome">Site Home</a></li>
                     <li><a href="/calendar">Calendar</a></li>
                     <li><a href="/courses">My Courses</a></li>
+
+                    
                 </ul>
             </nav>
         </aside>

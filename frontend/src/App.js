@@ -14,6 +14,8 @@ import AddCourse from "./pages/Instructor/AddCourse/AddCourse";
 import InstructorViewCourses from "./pages/Instructor/InstructorViewCourses/InstructorViewCourses";
 import InstructorLearnerProgress from "./pages/Instructor/InstructorLearnerProgress/InstructorLearnerProgress";
 import EditCourse from "./pages/Instructor/EditCourse/EditCourse";
+import AdminCourses from "./pages/Admin/AdminCourses/AdminCourses";
+import AdminViewCourseDetails from "./pages/Admin/AdminViewCourseDetails/AdminViewCourseDetails";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/instructorviewcourses" element={<InstructorViewCourses />} />
         <Route path="/instructorlearnerprogress" element={<InstructorLearnerProgress />} />
         <Route path="/editcourse/:courseId" element={<EditCourse/>}/>
+        <Route path="/admincourses" element={<AdminCourses />} />
+        <Route path="/adminviewcoursedetails/:courseId" element={<AdminViewCourseDetails />} />
         
       </Routes>
     </Router>

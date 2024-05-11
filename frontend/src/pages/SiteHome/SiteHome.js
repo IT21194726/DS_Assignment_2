@@ -3,7 +3,7 @@ import "./SiteHome.css";
 import Sidebar from '../../components/Sidebar';
 
 function HomePage() {
-    const [sidebarVisible, setSidebarVisible] = useState(false);
+    const [sidebarVisible, setSidebarVisible] = useState(true);
 
     // Function to toggle sidebar visibility
     const toggleSidebar = () => {
@@ -11,18 +11,23 @@ function HomePage() {
     };
 
     return (
-        <div className={`homepage ${sidebarVisible ? "with-sidebar" : ""}`}>
-            <header className="header">
-                <div className="header-content">
-                    <button className="menu-btn" onClick={toggleSidebar}>☰</button>
-                    <img src="/Edulogo.png" alt="EduHub Logo" className="home2logo" />
-                    <h1 className="title">EduHub - Open Learning Platform</h1>
-                </div>
-            </header>
+      <div className={`add-course-page ${sidebarVisible ? "with-sidebar" : ""}`}>
+      {/* Header Section */}
+      <header className={`header ${sidebarVisible ? "shifted" : ""}`}>
+        <div className="header-content">
+          <button className="menu-btn" onClick={toggleSidebar}>
+            ☰
+          </button>
+          <img src="/Edulogo.png" alt="EduHub Logo" className="home2logo" />
+          <h1 className="title">EduHub - Open Learning Platform</h1>
+        </div>
+      </header>
 
-            {/* Sidebar controlled by prop */}
-            <Sidebar isOpen={sidebarVisible} />
+      {/* Sidebar Navigation */}
+      <Sidebar isOpen={sidebarVisible} />
 
+      {/* Main Content Section */}
+      <div className={`mmain-content ${sidebarVisible ? "shifted" : ""}`}>
       <section className="hero">
         <img src="/EduPic1.jpg" alt="Main Image" className="hero-image" />
         <div className="hero-content">
@@ -103,6 +108,7 @@ function HomePage() {
           <p>Email: eduhub@gmail.com</p>
         </div>
       </footer>
+    </div>
     </div>
   );
 }

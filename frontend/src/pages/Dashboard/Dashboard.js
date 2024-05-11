@@ -30,7 +30,7 @@ const recentCourses = [
 ];
 
 function Dashboard() {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
@@ -61,19 +61,24 @@ function Dashboard() {
   };
 
   return (
-    <div  className={`homepage ${sidebarVisible ? "with-sidebar" : ""}`}>
+    <div className={`add-course-page ${sidebarVisible ? 'with-sidebar' : ''}`}>
+    {/* Header Section */}
+    <header className={`header ${sidebarVisible ? 'shifted' : ''}`}>
+      <div className="header-content">
+        <button className="menu-btn" onClick={toggleSidebar}>☰</button>
+        <img src="/Edulogo.png" alt="EduHub Logo" className="home2logo" />
+        <h1 className="title">EduHub - Open Learning Platform - Dashboard</h1>
+      </div>
+    </header>
 
-      <header className="header">
-        <div className="header-content">
-          <button className="menu-btn" onClick={toggleSidebar}>
-            ☰
-          </button>
-          <img src="/Edulogo.png" alt="EduHub Logo" className="home2logo" />
-          <h1 className="title">EduHub - Open Learning Platform</h1>
-        </div>
-      </header>
-      <Sidebar isOpen={sidebarVisible} />
+    {/* Sidebar Navigation */}
+    <Sidebar isOpen={sidebarVisible} />
 
+
+  
+
+    {/* Main Content Section */}
+    <div className={`mmain-content ${sidebarVisible ? 'shifted' : ''}`}>
       {/* Two-column Layout */}
       <div className="dashboard-container">
         {/* Main Column (Larger Section) */}
@@ -86,9 +91,9 @@ function Dashboard() {
               className="welcome-image"
             />
             <div className="hero-content">
-              <h2>
+              <h5>
                 Each course is a step forward. Build your expertise with EduHub.
-              </h2>
+              </h5>
             </div>
           </section>
 
@@ -176,6 +181,7 @@ function Dashboard() {
           <p>Email: eduhub@example.com</p>
         </div>
       </footer>
+    </div>
     </div>
   );
 }
