@@ -163,6 +163,7 @@ const AddCourse = () => {
               <div key={index} className="topic-box">
                 <label>
                   Topic {index + 1}: {/* Add topic number */}
+                  <br></br>
                   <input
                     type="text"
                     value={topic.title}
@@ -261,6 +262,7 @@ const AddCourse = () => {
                   <div key={qIndex} className="quiz-box">
                     <label>
                       Question {qIndex + 1}: {/* Question number */}
+                      <br></br>
                       <input
                         type="text"
                         value={question.question}
