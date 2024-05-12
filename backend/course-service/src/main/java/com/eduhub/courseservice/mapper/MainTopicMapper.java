@@ -22,7 +22,6 @@ public class MainTopicMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The MainTopicDTO should not be null");
         }
-        domain.setMainTopicId(dto.getMainTopicId());
         domain.setTitle(dto.getTitle());
         domain.setDescription(dto.getDescription());
         List<Quiz> quizzes = new ArrayList<>();

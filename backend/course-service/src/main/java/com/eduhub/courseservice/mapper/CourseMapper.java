@@ -22,7 +22,6 @@ public class CourseMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The DoctorDTO should not be null");
         }
-        domain.setCourseId(dto.getCourseId());
         domain.setTitle(dto.getTitle());
         domain.setTitleImage(dto.getTitleImage());
         domain.setOutcomes(dto.getOutcomes());
