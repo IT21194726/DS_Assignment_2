@@ -14,7 +14,7 @@ import AddCourse from "./pages/Instructor/AddCourse/AddCourse";
 import InstructorViewCourses from "./pages/Instructor/InstructorViewCourses/InstructorViewCourses";
 import InstructorLearnerProgress from "./pages/Instructor/InstructorLearnerProgress/InstructorLearnerProgress";
 import EditCourse from "./pages/Instructor/EditCourse/EditCourse";
-
+import Lectures from "./pages/lectureVedio/Lectures"
 function App() {
   return (
     <Router>
@@ -32,6 +32,7 @@ function App() {
         <Route path="/instructorviewcourses" element={<InstructorViewCourses />} />
         <Route path="/instructorlearnerprogress" element={<InstructorLearnerProgress />} />
         <Route path="/editcourse/:courseId" element={<EditCourse/>}/>
+        <Route path="/lectures" element={<Lectures/>}/>
         
       </Routes>
     </Router>
