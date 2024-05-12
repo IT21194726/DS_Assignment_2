@@ -1,6 +1,7 @@
 package com.eduhub.courseservice.mapper;
 
 import com.eduhub.courseservice.dto.CourseDTO;
+import com.eduhub.courseservice.dto.MainTopicDTO;
 import com.eduhub.courseservice.entity.Course;
 import com.eduhub.courseservice.entity.MainTopic;
 import com.eduhub.courseservice.exception.ReferenceNotFoundException;
@@ -22,7 +23,6 @@ public class CourseMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The DoctorDTO should not be null");
         }
-        domain.setCourseId(dto.getCourseId());
         domain.setTitle(dto.getTitle());
         domain.setTitleImage(dto.getTitleImage());
         domain.setOutcomes(dto.getOutcomes());
@@ -50,6 +50,9 @@ public class CourseMapper {
         dto.setStructure(domain.getStructure());
         dto.setDescription(domain.getDescription());
         dto.setStatus(domain.getStatus());
+        List<MainTopicDTO> mainTopicDTOS = new ArrayList<>();
+        domain.getMainTopics().forEach(mainTopic -> mainTopicDTOS.add(mainTopicMapper.domainToDto(mainTopic)));
+        dto.setMainTopics(mainTopicDTOS);
         return dto;
     }
 }
