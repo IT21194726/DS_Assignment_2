@@ -1,0 +1,97 @@
+
+.AVCD-page {
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 20px;
+
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .AVCD-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #912323;
+    font-size: 1.2em; 
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .AVCD-table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(94, 23, 23, 0.1); 
+  }
+  
+  .AVCD-table th,
+  .AVCD-table td {
+    padding: 14px;
+    border: 1px solid #700d0d; 
+    text-align: left;
+    background-color: #f9fafb; 
+    transition: background-color 0.3s ease;
+  }
+  
+  .AVCD-table th {
+    background-color: #007bff; 
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .AVCD-table tr:nth-child(even) {
+    background-color: #752525;
+  }
+  
+  .AVCD-table tr:hover td {
+    background-color: #cbddf0; 
+  }
+  
+  .AVCD-title-image {
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(179, 103, 103, 0.2); 
+    margin-bottom: 15px; 
+  }
+  
+  .AVCD-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .AVCD-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, opacity 0.3s ease; 
+  }
+  
+  .AVCD-button.back {
+    background-color: #343a40; 
+  }
+  
+  .AVCD-button.approve {
+    background-color: #28a745; 
+  }
+  
+  .AVCD-button.decline {
+    background-color: #dc3545; 
+  }
+  
+  .AVCD-button:hover {
+    opacity: 0.85;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  }
+  

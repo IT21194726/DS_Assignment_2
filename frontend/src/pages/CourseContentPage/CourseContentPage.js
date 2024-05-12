@@ -17,7 +17,7 @@ function CourseContent() {
     const selectedCourse = CourseOverview.find(overview => overview.id === id);
 
     return (
-        <div style={{backgroundColor:'#f9f9fa'}} className={`homepage ${sidebarVisible ? "with-sidebar" : "hello"}`}>
+        <div style={{ backgroundColor: '#f9f9fa' }} className={`homepage ${sidebarVisible ? "with-sidebar" : "hello"}`}>
 
             <header style={{ position: 'relative' }} className="header">
                 <div className="header-content">
@@ -43,7 +43,7 @@ function CourseContent() {
                     )}
                 </div> */}
                 <div class="card">
-                    <h5 style={{backgroundColor:'white'}} class="card-header">
+                    <h5 style={{ backgroundColor: 'white' }} class="card-header">
                         Course Content
                     </h5>
                     <div class="card-body">

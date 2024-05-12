@@ -13,6 +13,10 @@ html, body {
     background-color: #3285d8;
 }
 
+.h23{
+    color: #3285d8;
+}
+
 /* Header Section */
 .dashboard-header {
     display: flex;

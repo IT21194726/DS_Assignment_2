@@ -1,0 +1,90 @@
+
+.AC-page {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .AC-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .AC-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .AC-table th,
+  .AC-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .AC-table th {
+    background-color: #b23b3b;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .AC-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+  }
+  
+  .AC-table tr:hover {
+    background-color: #f1f1f1; 
+  }
+  
+  .AC-button {
+    margin-right: 5px;
+    
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .AC-button.view {
+    background-color: #007bff; 
+  }
+  
+  .AC-button.view:hover {
+    background-color: #0056b3;
+  }
+  
+  .AC-button.approve {
+    background-color: #28a745; 
+  }
+  
+  .AC-button.approve:hover {
+    background-color: #218838;
+  }
+  
+  .AC-button.decline {
+    background-color: #dc3545; 
+  }
+  
+  .AC-button.decline:hover {
+    background-color: #c82333;
+  }
+  
+  .AC-button.reset {
+    background-color: #343a40; 
+  }
+  
+  .AC-button.reset:hover {
+    background-color: #23272b;
+  }
+  
+  .AC-status {
+    color: #dc3545; 
+    font-weight: bold;
+  }
+  
