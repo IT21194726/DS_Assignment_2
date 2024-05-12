@@ -1,0 +1,54 @@
+/* LearnerProgress.css */
+
+.learner-progress-page {
+    padding: 20px;
+    
+    
+    max-width: 100%;
+    text-align: left;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners for the entire page */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .learner-progress-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Dark gray text color */
+  }
+  
+  .learner-progress-table {
+    width: 100%;
+    border-collapse: collapse; /* No gaps between cells */
+    margin-top: 20px;
+  }
+  
+  .learner-progress-table th, .learner-progress-table td {
+    border: 1px solid #ddd; /* Light gray borders around cells */
+    padding: 8px;
+    text-align: left; /* Align text to the left */
+  }
+  
+  .learner-progress-table th {
+    background-color: #9e2b1e; /* Red header for distinct appearance */
+    color: #fff; /* White text in the header */
+    font-weight: bold;
+  }
+  
+  .learner-progress-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternating row background color */
+  }
+  
+  .learner-progress-table tr:hover {
+    background-color: #e6e6e6; /* Highlight row on hover */
+  }
+  
+  .learner-progress-table td {
+    text-align: left;
+    color: #333; /* Dark gray text color */
+  }
+  
+  .learner-progress-table td, .learner-progress-table th {
+    border-radius: 4px;
+  }
+  

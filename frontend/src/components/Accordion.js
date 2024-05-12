@@ -1,13 +1,14 @@
 import React from 'react';
 import CustomAccordion from './CustomAccordion';
-import CourseContent from '../data/CourseContent';
-export default function AccordionExpandDefault() {
+
+export default function AccordionExpandDefault({courseContent}) {
+
   return (
     <div style={{ margin: 20 }}>
-   
-      {CourseContent.map((content, index) =>(
-            <CustomAccordion key={index} summary={content.title} details={content.description}/>
+      {courseContent.map((topics)=>(
+        <CustomAccordion summary={topics.title} details={topics.description} />
       ))}
+    
     </div>
   );
 }

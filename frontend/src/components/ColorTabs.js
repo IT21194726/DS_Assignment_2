@@ -7,7 +7,9 @@ import { Box, Grid, Typography, LinearProgress, List, ListItem, ListItemText, Li
 import StarIcon from '@mui/icons-material/Star';
 import CheckIcon from '@mui/icons-material/Check';
 import ReviewForm from './ReviewForm';
-import TextField from '@mui/material/TextField';
+import CourseOverview from '../data/CourseOverview';
+import CourseDetails from './CourseDetails';
+
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,7 +23,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3 , backgroundColor:'white' }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -42,15 +44,15 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs({ id }) {
   const [value, setValue] = React.useState(0);
-
+  const courseID = id
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const totalRating = 5;
   const totalReviews = 4;
-
+  const selectedCourse = CourseOverview.find(overview => overview.id === courseID);
   const ratingsData = [
     { label: '5 stars', percentage: 100 },
     { label: '4 stars', percentage: 0 },
@@ -61,50 +63,30 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Overview" {...a11yProps(0)} />
-          <Tab label="Content" {...a11yProps(1)} />
-          <Tab label="Reviews" {...a11yProps(2)} />
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' , }}>
+        <Tabs   value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab sx={{fontWeight:'bold' , }} label="Overview" {...a11yProps(0)} />
+          <Tab sx={{fontWeight:'bold'}}  label="Content" {...a11yProps(1)} />
+          <Tab sx={{fontWeight:'bold'}}  label="Reviews" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {/* Course Overview */}
-        <Typography variant="h4" component="h2" gutterBottom>
-          Course Overview
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Only a quid me old mucker squiffy tomfoolery grub cheers ruddy cor blimey guvnor in my flat, up the duff Eaton car boot up the kyver pardon you A bit of how your father David skive off sloshed, dont get shirty with me chip shop vagabond crikey bugger Queen English chap. Matie boy nancy boy bite your arm off up the kyver old no biggie fantastic boot, David have it show off show off pick your nose and blow off lost the plot porkies bits and bobs only a quid bugger all mate, absolutely bladdered bamboozled its your round dont get shirty with me down the pub well. Give us a bell bits and bobs Charles he lost his bottle super my lady cras starkers bite your arm off Queens English, pardon me horse play Elizabeth a blinding shot chinwag knees up do one David, blag cup of tea Eaton so I said bleeding haggle James Bond cup of char. Gosh William ummm Im telling crikey burke I dont want no agro A bit of how your father bugger all mate off his nut that, what a plonker cuppa owt to do with me nancy boy show off show off pick your nose and blow off spiffing good time lavatory me old mucker, chimney pot what a load of rubbish boot squiffy lost the plot brolly wellies excuse my french.
-        </Typography>
-
-        {/* Target Audience */}
-        <Typography variant="h4" component="h2" gutterBottom>
-          What is the Target Audience?
-        </Typography>
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <CheckIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Business managers, leaders" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <CheckIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Downloadable lectures, code and design assets for all projects" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <CheckIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Anyone who is finding a chance to get the promotion" />
-          </ListItem>
-        </List>
+        {/* Display the selected course details */}
+        {selectedCourse ? (
+          <CourseDetails
+            overviewContent={selectedCourse.overview}
+            outcomes={selectedCourse.outcomes}
+            structure={selectedCourse.structure}
+          />
+        ) : (
+          <Typography variant="body1">No matching course found for the provided ID.</Typography>
+        )}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <h2>Course Content</h2>
-        <Accor />
+      <CustomTabPanel value={value} index={1}  >
+        <Typography variant="h6" component="h2" gutterBottom sx={{ fontWeight: 'bold' }}>
+          Course Content
+        </Typography>
+        <Accor courseContent={selectedCourse.content} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Box sx={{}}>
