@@ -9,6 +9,7 @@ import SiteHome from "./pages/SiteHome/SiteHome";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseDetailsPage from "./pages/CourseDetailsPage/CourseDetailsPage";
 import CourseContentPage from "./pages/CourseContentPage/CourseContentPage"
+import Lectures from "./pages/lectureVedio/Lectures"
 import InstructorDashboard from "./pages/Instructor/InstructorDashboard/InstructorDashboard";
 import AddCourse from "./pages/Instructor/AddCourse/AddCourse";
 import InstructorViewCourses from "./pages/Instructor/InstructorViewCourses/InstructorViewCourses";
@@ -29,6 +30,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/course" element={<CourseDetailsPage />} />
         <Route path="/content" element={<CourseContentPage />} />
+        <Route path ="/lectures" element={<Lectures/>} />
         <Route path="/instructordashboard" element={<InstructorDashboard />} />
         <Route path="/addcourse" element={<AddCourse />} />
         <Route path="/instructorviewcourses" element={<InstructorViewCourses />} />
