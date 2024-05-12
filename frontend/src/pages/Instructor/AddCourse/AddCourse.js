@@ -16,18 +16,18 @@ const AddCourse = () => {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
 
-  // Sidebar toggle handler
+
 
   const toggleSidebar = () => setSidebarVisible(!sidebarVisible);
 
-  // Navigation handlers for the stepper
+
   const handleNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const handleBack = () =>
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   const handleReset = () => setActiveStep(0);
 
-  // Basic Course Info (state variables and handlers)
+ 
   const [courseTitle, setCourseTitle] = useState("");
   const [titleImage, setTitleImage] = useState(null);
   const [outcomes, setOutcomes] = useState(["", "", ""]);
@@ -41,7 +41,7 @@ const AddCourse = () => {
     setOutcomes(newOutcomes);
   };
 
-  // Main Topics (state variables and handlers)
+  
   const initialSubtopic = { title: "", video: null, slides: null, notes: null };
   const initialQuizQuestion = {
     question: "",
@@ -93,7 +93,7 @@ const AddCourse = () => {
     setMainTopics(newTopics);
   };
 
-  // Form submission
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({
@@ -105,7 +105,7 @@ const AddCourse = () => {
     });
   };
 
-  // Render form steps based on active step
+
   const renderStepContent = (step) => {
     switch (step) {
       case 0:
@@ -162,7 +162,7 @@ const AddCourse = () => {
             {mainTopics.map((topic, index) => (
               <div key={index} className="topic-box">
                 <label>
-                  Topic {index + 1}: {/* Add topic number */}
+                  Topic {index + 1}: 
                   <br></br>
                   <input
                     type="text"
@@ -184,13 +184,13 @@ const AddCourse = () => {
                   />
                 </label>
 
-                {/* Subtopics */}
+              
                 <h5>Subtopics</h5>
                 {topic.subtopics.map((subtopic, subIndex) => (
                   <div key={subIndex} className="subtopic-box">
                     <label>
                       Subtopic {index + 1}.{subIndex + 1}:{" "}
-                      {/* Add subtopic number */}
+                      
                       <input
                         type="text"
                         value={subtopic.title}
@@ -256,12 +256,12 @@ const AddCourse = () => {
                   Add Another Subtopic
                 </button>
 
-                {/* Quiz Section */}
+             
                 <h5>Quiz Questions</h5>
                 {topic.quiz.map((question, qIndex) => (
                   <div key={qIndex} className="quiz-box">
                     <label>
-                      Question {qIndex + 1}: {/* Question number */}
+                      Question {qIndex + 1}: 
                       <br></br>
                       <input
                         type="text"
@@ -333,7 +333,7 @@ const AddCourse = () => {
 
   return (
     <div className={`add-course-page ${sidebarVisible ? "with-sidebar" : ""}`}>
-      {/* Header Section */}
+      
       <header className={`header ${sidebarVisible ? "shifted" : ""}`}>
         <div className="header-content">
           <button className="menu-btn" onClick={toggleSidebar}>
@@ -344,10 +344,10 @@ const AddCourse = () => {
         </div>
       </header>
 
-      {/* Sidebar Navigation */}
+      
       <InstructorSidebar isOpen={sidebarVisible} />
 
-      {/* Main Content Section */}
+      
       <div className={`mmain-content ${sidebarVisible ? "shifted" : ""}`}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (

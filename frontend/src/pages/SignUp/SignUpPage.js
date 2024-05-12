@@ -1,4 +1,4 @@
-// src/pages/SignUpPage.js
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,13 @@ function SignUpPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Handle form submission
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/signup", { username, password, email });
       if (response.status === 201) {
-        // Navigate to the login page upon successful sign-up
+        
         navigate("/login");
       } else {
         setError("Registration failed");
@@ -30,10 +30,10 @@ function SignUpPage() {
   return (
     <div className="signup-page">
       <div className="signup-container">
-        {/* Logo */}
+      
         <img src="/Edulogo.png" alt="EduHub Logo" className="signuplogo" />
       
-        {/* Sign-Up Form */}
+     
         <form onSubmit={handleSignUp}>
           <div>
             <label htmlFor="username">Username:</label>
@@ -65,12 +65,12 @@ function SignUpPage() {
               required
             />
           </div>
-          {/* Error Message */}
+        
           {error && <p className="error">{error}</p>}
-          {/* Submit Button */}
+        
           <button type="submit" className="signup-button">Sign Up</button>
         </form>
-        {/* Additional Link */}
+       
         <a href="/login" className="login-link">Already have an account? Log In</a>
       </div>
     </div>
