@@ -15,7 +15,6 @@ public class QuizMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The QuizDTO should not be null");
         }
-        domain.setQuizId(dto.getQuizId());
         domain.setQuestion(dto.getQuestion());
         domain.setAnswers(dto.getAnswers());
         domain.setCorrectAnswer(dto.getCorrectAnswer());

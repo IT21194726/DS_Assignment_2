@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,6 +14,6 @@ public class MainTopicDTO {
     private Long mainTopicId;
     private String title;
     private String description;
-    private ArrayList<SubTopicDTO> subtopics;
-    private ArrayList<QuizDTO> quizzes;
+    private List<SubTopicDTO> subtopics;
+    private List<QuizDTO> quizzes;
 }

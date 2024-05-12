@@ -24,10 +24,13 @@ public class MainTopic {
     @Column(name = "subTopics")
     private ArrayList<SubTopic> subTopics;
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quizzes")
+    @JoinTable(
+            name = "main_topic_quiz",
+            joinColumns = @JoinColumn(name = "main_topic_id", referencedColumnName = "main_topic_id"),
+            inverseJoinColumns = @JoinColumn(name = "quiz_id", referencedColumnName = "quiz_id")
+    )
     private List<Quiz> quizzes;
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "courses")
-    private ArrayList<Course> courses;
+    @ManyToMany(mappedBy = "mainTopics", fetch = FetchType.LAZY)
+    private List<Course> courses;
 }
