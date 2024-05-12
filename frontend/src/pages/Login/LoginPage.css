@@ -1,6 +1,4 @@
-/* src/pages/LoginPage.css */
 
-/* Overall layout for the login page */
 .login-page {
     display: flex;
     justify-content: center;
@@ -19,8 +17,8 @@
   }
   
   .loginlogo {
-    width: 250px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 250px; 
+    height: auto; 
     margin-bottom: 20px;
   }
   
@@ -57,7 +55,7 @@
   .login-button {
     width: 100%;
     padding: 10px;
-    background-color: #8b0000; /* Red shade */
+    background-color: #8b0000; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -65,7 +63,7 @@
   }
   
   .login-button:hover {
-    background-color: #a00000; /* Darker red shade on hover */
+    background-color: #a00000; 
   }
   
   .forgot-password-link {
@@ -81,7 +79,7 @@
   
   .signup-link {
     display: block;
-    margin-top: 10px; /* Adjust as needed */
+    margin-top: 10px; 
     color: #8b0000;
     text-decoration: none;
   }

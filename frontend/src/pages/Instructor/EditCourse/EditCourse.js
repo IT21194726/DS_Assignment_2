@@ -1,4 +1,4 @@
-// EditCourse.js
+
 import React, { useState, useEffect } from 'react';
 import InstructorSidebar from '../../../components/InstructorSidebar';
 import Stepper from '@mui/material/Stepper';

@@ -37,10 +37,10 @@ function Dashboard() {
   const coursesToShow = 2;
   const handleNavigation = (courseTitle, image, id) => {
     console.log('you clicked div tag:', courseTitle)
-    // Navigate to '/test' and pass the course title as state
+    
     navigate('/course', { state: { course: courseTitle, image: image, id: id } });
   }
-  // Navigation functions for recently accessed courses
+  
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       Math.min(prevIndex + coursesToShow, recentCourses.length - coursesToShow)
@@ -55,14 +55,13 @@ function Dashboard() {
     currentIndex + coursesToShow
   );
 
-  // Toggle sidebar visibility
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
   return (
     <div className={`add-course-page ${sidebarVisible ? 'with-sidebar' : ''}`}>
-    {/* Header Section */}
+    
     <header className={`header ${sidebarVisible ? 'shifted' : ''}`}>
       <div className="header-content">
         <button className="menu-btn" onClick={toggleSidebar}>☰</button>
@@ -71,19 +70,19 @@ function Dashboard() {
       </div>
     </header>
 
-    {/* Sidebar Navigation */}
+   
     <Sidebar isOpen={sidebarVisible} />
 
 
   
 
-    {/* Main Content Section */}
+    
     <div className={`mmain-content ${sidebarVisible ? 'shifted' : ''}`}>
-      {/* Two-column Layout */}
+    
       <div className="dashboard-container">
-        {/* Main Column (Larger Section) */}
+       
         <div className="main-content">
-          {/* Welcome Section */}
+          
           <section className="hero">
             <img
               src="/WelcomeImage.jpg"
@@ -99,7 +98,7 @@ function Dashboard() {
 
 
 
-          {/* Recently Accessed Courses Section */}
+         
           <section className="recent-courses-section">
             <h2 className="recent-courses-title">Recently Accessed Courses</h2>
             <div className="recent-courses-container">
@@ -121,7 +120,7 @@ function Dashboard() {
             </div>
           </section>
 
-          {/* Course Overview Section */}
+      
           <section className="course-overview">
             <h2 className="overview-title">Course Overview</h2>
             <div className="course-cards">
@@ -143,7 +142,7 @@ function Dashboard() {
           </section>
         </div>
 
-        {/* Sidebar Column (Smaller Section) */}
+      
         <aside className="sidebar-info">
 
           <div className="latest-badges">
@@ -154,7 +153,7 @@ function Dashboard() {
               <li><FaMedal className="badge-icon" /> Certificate of Agile Project Management</li>
             </ul>
           </div>
-          {/* Calendar Section */}
+         
           <div className="calendar">
             <h2 className="info-title">Calendar</h2>
             <Calendar
@@ -172,7 +171,6 @@ function Dashboard() {
         </aside>
       </div>
 
-      {/* Footer Section */}
       <footer className="dashboard-footer">
         <div className="dashboard-contact-info">
           <h4>Contact Us</h4>

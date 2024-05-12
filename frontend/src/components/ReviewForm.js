@@ -16,7 +16,7 @@ function ReviewForm() {
 
     const [selectedRating, setSelectedRating] = useState(0);
 
-    // Set up form control using React Hook Form
+   
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             name: '',
@@ -27,10 +27,10 @@ function ReviewForm() {
         }
     });
 
-    // Submit handler
+    
     const onSubmit = (data) => {
         console.log('Form Data:', data);
-        // Add your form submission logic here
+    
     };
     return (
         <Box sx={{}}>
@@ -38,7 +38,7 @@ function ReviewForm() {
                 Write a Review
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* Your Name */}
+               
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <Controller
@@ -60,7 +60,7 @@ function ReviewForm() {
                             )}
                         />
                     </Grid>
-                    {/* Your Email */}
+             
                     <Grid item xs={6}>
                         <Controller
                             name="email"
@@ -89,7 +89,7 @@ function ReviewForm() {
                     </Grid>
                 </Grid>
 
-                {/* Review Title */}
+              
                 <Box my={2}>
                     <Controller
                         name="title"
@@ -111,7 +111,7 @@ function ReviewForm() {
                     />
                 </Box>
 
-                {/* Rating */}
+               
                 <Box mb={2}>
                     <Typography gutterBottom>Rating:</Typography>
                     <Controller
@@ -126,7 +126,7 @@ function ReviewForm() {
                                 error={!!errors.rating}
                                 onChange={(event, newValue) => {
                                     setSelectedRating(newValue);
-                                    field.onChange(newValue); // Update form value
+                                    field.onChange(newValue); 
                                   }}
                             />
                         )}
@@ -139,7 +139,7 @@ function ReviewForm() {
                     )}
                 </Box>
 
-                {/* Review Summary */}
+               
                 <Box mb={2}>
                     <Controller
                         name="summary"
@@ -160,7 +160,6 @@ function ReviewForm() {
                     />
                 </Box>
 
-                {/* Submit Button */}
                 <Button variant="contained" color="primary" type="submit">
                     Submit Review
                 </Button>

@@ -1,4 +1,4 @@
-/* Reset the default margin and padding of the page */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -6,14 +6,14 @@ html, body {
     height: 100%;
 }
 
-/* General page layout */
+
 .homepage {
 
-    /* padding-right: 20px; */
-    background-color: #ffffff; /* Adjust background color as needed */
+
+    background-color: #ffffff; 
 }
 
-/* Header Styling */
+
 .header {
     display: flex;
     align-items: center;
@@ -23,39 +23,39 @@ html, body {
     position: fixed;
     width: 100%;
     
-    z-index: 1000; /* Ensure it is above all other elements */
-    height: 100px; /* Adjust header height as needed */
+    z-index: 1000; 
+    height: 100px; 
 }
 
-/* Menu Button Styling */
+
 .menu-btn {
     font-size: 24px;
     padding: 8px;
-    background-color: #f0f0f0; /* Adjust button color */
+    background-color: #f0f0f0; 
     border-radius: 5px;
     margin-right: 8px;
 }
 
 
 .homelogo {
-    max-width: 120px; /* Adjust the maximum width */
-    max-height: 120px; /* Adjust the maximum height */
+    max-width: 120px; 
+    max-height: 120px; 
     width: auto;
     height: auto;
-    margin-right: 10px; /* Space between logo and title */
+    margin-right: 10px; 
 }
 
-/* Title Styling */
+
 .title2 {
-    font-size: 2rem; /* Adjust font size as needed */
+    font-size: 2rem; 
     margin: 0;
     line-height: 1.2;
     color: #b00d0d;
 }
 
-/* Login Button Styling */
+
 .login-btn {
-    background-color: #b00d0d; /* Adjust button color */
+    background-color: #b00d0d; 
     color: #ffffff;
     padding: 8px 12px;
     border-radius: 5px;
@@ -64,7 +64,7 @@ html, body {
     margin-right: 20px;
 }
 
-/* Hero Section */
+
 .hero {
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ html, body {
 .hero-image {
     width: 100%;
     height: auto;
-    max-width: 1000px; /* Adjust the max width */
+    max-width: 1000px; 
 }
 
 .hero-content {
@@ -83,7 +83,7 @@ html, body {
     text-align: center;
 }
 
-/* IT Industry Section */
+
 .it-industry {
     margin: 32px 0;
 }
@@ -103,7 +103,7 @@ html, body {
     border-radius: 8px;
 }
 
-/* Footer */
+
 .footer {
     margin-top: 32px;
     padding: 16px;

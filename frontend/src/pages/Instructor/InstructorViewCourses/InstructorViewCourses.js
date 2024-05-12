@@ -1,11 +1,11 @@
-// InstructorViewCourses.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './InstructorViewCourses.css';
 import Sidebar from "../../../components/InstructorSidebar";
 
 const InstructorViewCourses = () => {
-  // Mock array of course data with title and structure
+ 
   const mockCourses = [
     {
       id: 1,
@@ -54,17 +54,17 @@ const InstructorViewCourses = () => {
     },
   ];
 
-  // State to track which courses are expanded, default to the first course ID
+  
   const [expandedCourse, setExpandedCourse] = useState(mockCourses[0].id);
 
-  // Initialize the navigate function from react-router
+ 
   const navigate = useNavigate();
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
-  // Toggle the expanded state of a course while keeping the first one open
+ 
   const toggleCourse = (courseId) => {
     if (courseId === mockCourses[0].id) {
-      setExpandedCourse(mockCourses[0].id); // Keep the first accordion open
+      setExpandedCourse(mockCourses[0].id); 
     } else {
       setExpandedCourse(expandedCourse === courseId ? mockCourses[0].id : courseId);
     }
@@ -107,11 +107,11 @@ const InstructorViewCourses = () => {
                   >
                     {course.title}
                     <span className={`ivc-arrow ${expandedCourse === course.id ? 'expanded' : ''}`}>&#x25BC;</span>
-                    {/* Edit icon to navigate to update page */}
+                    
                     <button
                       className="ivc-edit-btn"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent accordion toggle
+                        e.stopPropagation(); 
                         handleEdit(course.id);
                       }}
                     >

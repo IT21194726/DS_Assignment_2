@@ -1,4 +1,4 @@
-// src/components/CourseDetails.js
+
 import React from 'react';
 import { Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const CourseDetails = ({ overviewContent, outcomes, structure }) => {
     return (
         <div>
-            {/* Course Overview */}
+           
             <Typography variant="h6" component="h2" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Course Overview
             </Typography>
@@ -15,7 +15,7 @@ const CourseDetails = ({ overviewContent, outcomes, structure }) => {
                 {overviewContent}
             </Typography>
 
-            {/* Target Audience */}
+         
             <Typography variant="h6" component="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Intended Learning Outcomes:
             </Typography>
@@ -29,7 +29,7 @@ const CourseDetails = ({ overviewContent, outcomes, structure }) => {
                     </ListItem>
                 ))}
             </List>
-            {/* course structure */}
+            
             <Typography variant="h6" component="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Course Structure:
             </Typography>
@@ -40,7 +40,7 @@ const CourseDetails = ({ overviewContent, outcomes, structure }) => {
     );
 };
 
-// PropTypes for type-checking
+
 CourseDetails.propTypes = {
    
     overviewContent: PropTypes.string.isRequired,
