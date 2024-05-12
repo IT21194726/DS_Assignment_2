@@ -1,4 +1,4 @@
-// AccordionExpandDefault.js
+
 import React, { useState } from 'react';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -16,7 +16,7 @@ export default function CourseDetails() {
   const navigate = useNavigate();
   const { course, image, id } = location.state || {};
   const [sidebarVisible, setSidebarVisible] = useState(false);
-  // Toggle sidebar visibility
+ 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
@@ -24,7 +24,7 @@ export default function CourseDetails() {
 
   const handleNavigation = (courseTitle, image, id) => {
     console.log('you clicked div tag:', courseTitle)
-    // Navigate to '/test' and pass the course title as state
+    
     navigate('/content', { state: { course: courseTitle, image: image, id: id } });
   }
 
@@ -49,7 +49,7 @@ export default function CourseDetails() {
 
       <div style={{ margin: 50, }}>
         <Grid container spacing={4}>
-          {/* Main Content Section */}
+          
           <Grid item xs={12} md={8}>
             <div>
               {course && image ? (
@@ -67,7 +67,7 @@ export default function CourseDetails() {
             </div>
           </Grid>
 
-          {/* Card Section */}
+        
           <Grid item xs={12} md={4}>
             <Card elevation={16} sx={{ marginTop: 7, borderRadius: 5 }}>
               <CardMedia component="img" image={image} alt={course} />

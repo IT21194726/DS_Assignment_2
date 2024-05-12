@@ -2,10 +2,10 @@ import React from "react";
 import "./InstructorSidebar.css";
 
 function Sidebar({ isOpen }) {
-    // Retrieve current path
+  
     const currentPath = window.location.pathname;
 
-    // Determine if a link is active
+    
     const isActive = (path) => currentPath === path;
 
     return (

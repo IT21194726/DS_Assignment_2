@@ -4,14 +4,14 @@ import "./HomePage.css";
 function HomePage() {
     return (
         <div className="homepage">
-            {/* Header */}
+           
             <header className="header">
                 <img src="/Edulogo.png" alt="EduHub Logo" className="homelogo" />
                 <h1 className="title2">EduHub - Open Learning Platform</h1>
                 <a href="/login" className="login-btn">Log In</a>
             </header>
 
-            {/* Main content and other sections */}
+          
             <section className="hero">
                 <img src="/EduPic1.jpg" alt="Main Image" className="hero-image" />
                 <div className="hero-content">
@@ -19,7 +19,6 @@ function HomePage() {
                 </div>
             </section>
 
-       {/* IT Industry Section */}
        <section className="it-industry">
         <h2>Would you like to enter the IT industry?</h2>
         <p>You can obtain an industry-recognized qualification free of charge from EduHub</p>
@@ -43,7 +42,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Kick-Start Section with Background */}
       <section className="kick-start" style={{ backgroundImage: "url('/EduPic2.png')" }}>
         <h2>Kick-start Your Career as a Software Developer</h2>
         <h4>with the EduHub Open learning Platform</h4>
@@ -55,7 +53,7 @@ function HomePage() {
         <p>This endeavour is administered by the Centre for Open and Distance Learning, University of Moratuwa, and sponsored by DP Education.</p>
       </section>
 
-      {/* Courses */}
+      
       <section className="courses">
         <h2>Courses</h2>
         <div className="course-cards">
@@ -82,7 +80,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
+     
       <footer className="footer">
         <div className="contact-info">
           <h4>Get in Touch</h4>

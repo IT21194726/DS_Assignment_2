@@ -10,7 +10,7 @@ function CourseContent() {
     const location = useLocation();
     const { course, image, id } = location.state || {};
     const [sidebarVisible, setSidebarVisible] = useState(false);
-    // Toggle sidebar visibility
+    
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
@@ -32,16 +32,7 @@ function CourseContent() {
 
 
             <div style={{ margin: 50 }}>
-                {/* <div>
-                    {course && image ? (
-                        <div>
-                            <h5>{course}</h5>
-                            <img src={image} alt={course} style={{ width: '40%', height: '20%' }} />
-                        </div>
-                    ) : (
-                        <p>No course data was provided.</p>
-                    )}
-                </div> */}
+                
                 <div class="card">
                     <h5 style={{ backgroundColor: 'white' }} class="card-header">
                         Course Content

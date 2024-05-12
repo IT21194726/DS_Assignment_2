@@ -43,7 +43,7 @@ function Dashboard() {
 
   const coursesToShow = 2;
 
-  // Navigation functions for recently accessed courses
+ 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       Math.min(prevIndex + coursesToShow, recentCourses.length - coursesToShow)
@@ -58,7 +58,7 @@ function Dashboard() {
     currentIndex + coursesToShow
   );
 
-  // Toggle sidebar visibility
+
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
@@ -95,7 +95,7 @@ function Dashboard() {
               </div>
             </section>
 
-            {/* Kick-Start Section with Background */}
+           
             <section
               className="kick-start"
               style={{
@@ -132,7 +132,7 @@ function Dashboard() {
 
 
 
-            {/* Course Overview Section */}
+          
             <section className="course-overview">
               <h2 className="overview-title">Course Overview</h2>
               <div className="course-cards">
@@ -147,14 +147,14 @@ function Dashboard() {
             </section>
           </div>
 
-          {/* Sidebar Column (Smaller Section) */}
+          
           <aside className="sidebar-info">
-            {/* Course Analytics */}
+            
             <div className="info-box">
               <h2 className="info-title">Course Analytics</h2>
               <ul className="analytics-list">
                 {courseAnalytics
-                  .slice(-3) // Get the last three courses
+                  .slice(-3) 
                   .map((course, index) => (
                     <li key={index}>
                       <h3>{course.courseName}</h3>
@@ -165,7 +165,7 @@ function Dashboard() {
               </ul>
             </div>
 
-            {/* Calendar Section */}
+            
             <div className="calendar">
               <h2 className="info-title">Calendar</h2>
               <Calendar value={selectedDate} onChange={setSelectedDate} />
@@ -181,7 +181,7 @@ function Dashboard() {
       </div>
 
 
-      {/* Footer Section */}
+     
       <footer className="dashboard-footer">
         <div className="dashboard-contact-info">
           <h4>Contact Us</h4>

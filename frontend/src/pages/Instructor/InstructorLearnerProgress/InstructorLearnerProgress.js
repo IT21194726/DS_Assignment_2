@@ -1,10 +1,10 @@
-// InstructorLearnerProgress.js
+
 import React, { useState, useEffect } from 'react';
 import './InstructorLearnerProgress.css';
 import Sidebar from "../../../components/InstructorSidebar";
 
 const InstructorLearnerProgress = () => {
-  // Mock data array simulating learner progress
+  
   const mockLearnerProgress = [
     {
       name: "John Doe",
@@ -36,17 +36,17 @@ const InstructorLearnerProgress = () => {
     }
   ];
 
-  // State to hold learner data
+ 
   const [learners, setLearners] = useState([]);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
-  // Simulate an API call using useEffect and mock data
+ 
   useEffect(() => {
     const fetchLearnerProgress = () => {
-      // Mimicking a network request delay
+      
       setTimeout(() => {
         setLearners(mockLearnerProgress);
       }, 1000);

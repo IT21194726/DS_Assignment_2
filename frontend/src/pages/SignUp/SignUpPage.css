@@ -1,6 +1,4 @@
-/* src/pages/SignUpPage.css */
 
-/* Overall layout for the sign-up page */
 .signup-page {
     display: flex;
     justify-content: center;
@@ -19,7 +17,7 @@
   }
   
   .signuplogo {
-    width: 250px; /* Adjust logo size as needed */
+    width: 250px; 
     margin-bottom: 20px;
   }
   
@@ -53,7 +51,7 @@
   .signup-button {
     width: 100%;
     padding: 10px;
-    background-color: #8b0000; /* Red shade */
+    background-color: #8b0000; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -61,7 +59,7 @@
   }
   
   .signup-button:hover {
-    background-color: #a00000; /* Darker red shade on hover */
+    background-color: #a00000; 
   }
   
   .login-link {
