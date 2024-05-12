@@ -21,6 +21,9 @@ public class InstructorMapper {
         domain.setAddress(dto.getAddress());
         domain.setCity(dto.getCity());
         domain.setCountry(dto.getCountry());
+        domain.setDegreeName(dto.getDegreeName());
+        domain.setFieldOfStudy(dto.getFieldOfStudy());
+        domain.setYearsOfExperience(dto.getYearsOfExperience());
         return domain;
     }
 
@@ -29,13 +32,16 @@ public class InstructorMapper {
             throw new ReferenceNotFoundException("The Instructor should not be null");
         }
         InstructorDTO dto = new InstructorDTO();
-        dto.setLearnerId(domain.getLearnerId());
+        dto.setInstructorId(domain.getInstructorId());
         dto.setFirstName(domain.getFirstName());
         dto.setLastName(domain.getLastName());
         dto.setPhone(domain.getPhone());
         dto.setAddress(domain.getAddress());
         dto.setCity(domain.getCity());
         dto.setCountry(domain.getCountry());
+        dto.setDegreeName(domain.getDegreeName());
+        dto.setFieldOfStudy(domain.getFieldOfStudy());
+        dto.setYearsOfExperience(domain.getYearsOfExperience());
         return dto;
     }
 }

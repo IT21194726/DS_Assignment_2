@@ -69,7 +69,7 @@ public class InstructorServiceImpl implements InstructorService {
     public CommonResponse saveInstructor(InstructorDTO instructorDTO) {
         log.info("InstructorServiceImpl.saveInstructor method accessed");
         CommonResponse commonResponse = new CommonResponse();
-        Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getLearnerId());
+        Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getInstructorId());
         if(instructor.isPresent()){
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Instructor details already exist!");
@@ -89,7 +89,7 @@ public class InstructorServiceImpl implements InstructorService {
     public CommonResponse updateInstructor(InstructorDTO instructorDTO) {
         log.info("InstructorServiceImpl.updateInstructor method accessed");
         CommonResponse commonResponse = new CommonResponse();
-        Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getLearnerId());
+        Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getInstructorId());
         if(instructor.isEmpty()) {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Instructor details not available!");

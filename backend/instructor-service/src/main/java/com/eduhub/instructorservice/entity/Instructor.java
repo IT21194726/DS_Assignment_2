@@ -9,12 +9,12 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-@Table(name = "learner")
+@Table(name = "instructor")
 public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "learner_id")
-    private Long learnerId;
+    @Column(name = "instructor_id")
+    private Long instructorId;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -27,4 +27,10 @@ public class Instructor {
     private String city;
     @Column(name = "country")
     private String country;
+    @Column(name = "degree_name")
+    private String degreeName;
+    @Column(name = "field_of_study")
+    private String fieldOfStudy;
+    @Column(name = "years_o_fExperience")
+    private String yearsOfExperience;
 }
