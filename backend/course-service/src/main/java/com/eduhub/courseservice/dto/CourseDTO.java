@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,5 +18,5 @@ public class CourseDTO {
     private String structure;
     private String description;
     private String status;
-    private ArrayList<MainTopicDTO> mainTopics;
+    private List<MainTopicDTO> mainTopics;
 }

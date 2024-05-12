@@ -32,7 +32,6 @@ public class MainTopic {
     )
     private List<Quiz> quizzes;
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "courses")
-    private ArrayList<Course> courses;
+    @ManyToMany(mappedBy = "mainTopics", fetch = FetchType.LAZY)
+    private List<Course> courses;
 }
