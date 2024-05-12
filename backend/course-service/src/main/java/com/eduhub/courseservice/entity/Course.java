@@ -29,7 +29,6 @@ public class Course {
     @Column(name = "status")
     private String status;
     @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "mainTopics")
     @JoinTable(
             name = "course_main_topic", // Name of the join table
             joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"), // Column referencing Course

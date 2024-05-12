@@ -94,7 +94,7 @@ public class CourseServiceImpl implements CourseService {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Course details not available!");
             commonResponse.setData(new ArrayList<>());
-            log.warn("Course details not available. message : {}", commonResponse.getMessage());
+            log.warn("Course detail not available. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
         Course courseUpdatedDetails = courseRepository.save(courseMapper.dtoToDomain(courseDTO, course.get()));
