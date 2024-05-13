@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+//Enitity Class
 @Getter
 @Setter
 @RequiredArgsConstructor
