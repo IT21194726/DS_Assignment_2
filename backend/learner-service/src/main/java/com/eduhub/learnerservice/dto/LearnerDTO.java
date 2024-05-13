@@ -1,3 +1,4 @@
+//DTO Class
 package com.eduhub.learnerservice.dto;
 
 import lombok.*;
