@@ -1,8 +1,9 @@
 # Project Name: Eduhub- Open Learning Platform
-## Usage
 
 This project implements a full-stack web application using Spring Boot, React, Docker, and MongoDB. It demonstrates a robust authentication and authorization system with JWT and refresh tokens, ensuring secure user access and seamless experience even with token expiration.
-Technologies Used
+
+## Technologies Used
+
 Backend: Spring Boot
 Security: Spring Security, JWT
 Database: MongoDB
