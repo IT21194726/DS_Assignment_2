@@ -14,6 +14,7 @@ public class CourseDTO {
     private Long courseId;
     private String title;
     private String titleImage;
+    private List<MediaDTO> mediaDTOS;
     private ArrayList<String> outcomes;
     private String structure;
     private String description;
