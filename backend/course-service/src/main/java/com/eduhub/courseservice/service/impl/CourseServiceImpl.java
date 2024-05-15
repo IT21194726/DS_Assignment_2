@@ -2,15 +2,19 @@ package com.eduhub.courseservice.service.impl;
 
 import com.eduhub.courseservice.common.CommonResponse;
 import com.eduhub.courseservice.dto.CourseDTO;
+import com.eduhub.courseservice.dto.MediaDTO;
 import com.eduhub.courseservice.entity.Course;
 import com.eduhub.courseservice.mapper.CourseMapper;
+import com.eduhub.courseservice.mapper.MediaEntityMapper;
 import com.eduhub.courseservice.repository.CourseRepository;
 import com.eduhub.courseservice.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +25,7 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final CourseMapper courseMapper;
+    private final MediaEntityMapper mediaEntityMapper;
 
     @Override
     public CommonResponse getAllCourseDetails() {
@@ -66,7 +71,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CommonResponse saveCourse(CourseDTO courseDTO) {
+    public CommonResponse saveCourse(CourseDTO courseDTO) throws IOException {
         log.info("CourseServiceImpl.saveCourse method accessed");
         CommonResponse commonResponse = new CommonResponse();
         Optional<Course> course = courseRepository.findById(courseDTO.getCourseId());
@@ -86,7 +91,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CommonResponse updateCourse(CourseDTO courseDTO) {
+    public CommonResponse updateCourse(CourseDTO courseDTO) throws IOException {
         log.info("CourseServiceImpl.updateCourse method accessed");
         CommonResponse commonResponse = new CommonResponse();
         Optional<Course> course = courseRepository.findById(courseDTO.getCourseId());
@@ -142,6 +147,35 @@ public class CourseServiceImpl implements CourseService {
         commonResponse.setMessage("Course details is delete success!");
         commonResponse.setData(new ArrayList<>());
         log.info("CourseServiceImpl.deleteCourseDetailsById method end");
+        return commonResponse;
+    }
+
+    @Override
+    public CommonResponse saveCourseWithFile(CourseDTO courseDTO, List<MultipartFile> files) throws IOException {
+        log.info("CourseServiceImpl.saveCourseWithFile method accessed");
+        CommonResponse commonResponse = new CommonResponse();
+        Optional<Course> course = courseRepository.findById(courseDTO.getCourseId());
+        if(course.isPresent()){
+            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+            commonResponse.setMessage("Course details already exist!");
+            commonResponse.setData(courseMapper.domainToDto(course.get()));
+            log.warn("Course details not exist. message : {}", commonResponse.getMessage());
+            return commonResponse;
+        }
+        List<MediaDTO> mediaDTOS = new ArrayList<>();
+        files.forEach(file -> {
+            try {
+                mediaDTOS.add(mediaEntityMapper.fileToDto(file, new MediaDTO()));
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
+        });
+        courseDTO.setMediaDTOS(mediaDTOS);
+        Course courseSavedDetails = courseRepository.save(courseMapper.dtoToDomain(courseDTO, new Course()));
+        commonResponse.setStatus(HttpStatus.CREATED);
+        commonResponse.setMessage("Course details saved success!");
+        commonResponse.setData(courseMapper.domainToDto(courseSavedDetails));
+        log.info("CourseServiceImpl.saveCourseWithFile method end");
         return commonResponse;
     }
 }

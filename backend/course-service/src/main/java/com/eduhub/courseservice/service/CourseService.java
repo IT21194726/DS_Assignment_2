@@ -2,6 +2,10 @@ package com.eduhub.courseservice.service;
 
 import com.eduhub.courseservice.common.CommonResponse;
 import com.eduhub.courseservice.dto.CourseDTO;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 public interface CourseService {
     /**
@@ -12,10 +16,10 @@ public interface CourseService {
     CommonResponse getAllCourseDetails();
 
     /**
-     * Get course by course id
+     * Get course by course mediaId
      *
-     * @param courseId - required data for get course by id
-     * @return success or fail response of get course by id
+     * @param courseId - required data for get course by mediaId
+     * @return success or fail response of get course by mediaId
      */
     CommonResponse getCourseDetailsById(Long courseId);
 
@@ -25,7 +29,7 @@ public interface CourseService {
      * @param courseDTO - required data for course save
      * @return success or fail response of course save
      */
-    CommonResponse saveCourse(CourseDTO courseDTO);
+    CommonResponse saveCourse(CourseDTO courseDTO) throws IOException;
 
     /**
      * Update course
@@ -33,13 +37,13 @@ public interface CourseService {
      * @param courseDTO - required data for course update
      * @return success or fail response of course update
      */
-    CommonResponse updateCourse(CourseDTO courseDTO);
+    CommonResponse updateCourse(CourseDTO courseDTO) throws IOException;
 
     /**
-     * Delete course by id
+     * Delete course by mediaId
      *
-     * @param courseId - required data for delete course by id
-     * @return success or fail response of delete course by id
+     * @param courseId - required data for delete course by mediaId
+     * @return success or fail response of delete course by mediaId
      */
     CommonResponse deleteCourseDetailsById(Long courseId);
 
@@ -49,4 +53,12 @@ public interface CourseService {
      * @return success or fail response of delete courses
      */
     CommonResponse deleteCourses();
+
+    /**
+     * Create course with file
+     *
+     * @param courseDTO - required data for course with file save
+     * @return success or fail response of course with file save
+     */
+    CommonResponse saveCourseWithFile(CourseDTO courseDTO, List<MultipartFile> files) throws IOException;
 }
