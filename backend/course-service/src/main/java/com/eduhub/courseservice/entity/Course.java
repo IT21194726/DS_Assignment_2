@@ -2,6 +2,7 @@ package com.eduhub.courseservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,13 @@ public class Course {
     private String title;
     @Column(name = "titleImage")
     private String titleImage;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "course_media_entity", // Name of the join table
+            joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"), // Column referencing Course
+            inverseJoinColumns = @JoinColumn(name = "media_id", referencedColumnName = "media_id") // Column referencing MainTopic
+    )
+    private List<MediaEntity> mediaEntity;
     @Column(name = "outcomes")
     private ArrayList<String> outcomes;
     @Column(name = "structure")

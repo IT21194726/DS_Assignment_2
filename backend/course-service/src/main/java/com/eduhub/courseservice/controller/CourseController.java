@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -29,10 +33,10 @@ public class CourseController {
     }
 
     /**
-     * Get course by course id
+     * Get course by course mediaId
      *
-     * @param courseId - required data for get course by id
-     * @return success or fail response of get course by id
+     * @param courseId - required data for get course by mediaId
+     * @return success or fail response of get course by mediaId
      */
     @GetMapping("/{courseId}")
     public ResponseEntity<CommonResponse> getCourseDetailsById(@PathVariable("courseId") @NotNull Long courseId) {
@@ -47,8 +51,20 @@ public class CourseController {
      * @return success or fail response of course save
      */
     @PostMapping("")
-    public ResponseEntity<CommonResponse> saveCourse(@Valid @RequestBody CourseDTO courseDTO) {
+    public ResponseEntity<CommonResponse> saveCourse(@Valid @RequestBody CourseDTO courseDTO) throws IOException {
         CommonResponse commonResponse = courseService.saveCourse(courseDTO);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+    /**
+     * Create course with file
+     *
+     * @param courseDTO - required data for course with file save
+     * @return success or fail response of course with file save
+     */
+    @PostMapping("/with-file")
+    public ResponseEntity<CommonResponse> saveCourseWithFile(@Valid @RequestPart("data") CourseDTO courseDTO, @RequestPart("files") List<MultipartFile> files) throws IOException {
+        CommonResponse commonResponse = courseService.saveCourseWithFile(courseDTO, files);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
@@ -59,16 +75,16 @@ public class CourseController {
      * @return success or fail response of course update
      */
     @PutMapping("")
-    public ResponseEntity<CommonResponse> updateCourse(@Valid @RequestBody CourseDTO courseDTO) {
+    public ResponseEntity<CommonResponse> updateCourse(@Valid @RequestBody CourseDTO courseDTO) throws IOException {
         CommonResponse commonResponse = courseService.updateCourse(courseDTO);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
     /**
-     * Delete course by id
+     * Delete course by mediaId
      *
-     * @param courseId - required data for delete course by id
-     * @return success or fail response of delete course by id
+     * @param courseId - required data for delete course by mediaId
+     * @return success or fail response of delete course by mediaId
      */
     @DeleteMapping("/{courseId}")
     public ResponseEntity<CommonResponse> deleteCourseDetailsById(@PathVariable("courseId") @NotNull Long courseId) {
