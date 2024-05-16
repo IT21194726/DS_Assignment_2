@@ -1,16 +1,25 @@
 package com.eduhub.learnerservice.service.impl;
 
+import com.eduhub.learnerservice.client.UserServiceClient;
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
+import com.eduhub.learnerservice.dto.LearnerResponseDTO;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
+import com.eduhub.learnerservice.dto.authentication.response.MessageResponse;
 import com.eduhub.learnerservice.entity.Learner;
+import com.eduhub.learnerservice.entity.LearnerHasUserInformation;
 import com.eduhub.learnerservice.mapper.LearnerMapper;
+import com.eduhub.learnerservice.repository.LearnerHasUserInformationRepository;
 import com.eduhub.learnerservice.repository.LearnerRepository;
 import com.eduhub.learnerservice.service.LearnerService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +30,8 @@ import java.util.Optional;
 public class LearnerServiceImpl implements LearnerService {
     private final LearnerRepository learnerRepository;
     private final LearnerMapper learnerMapper;
+    private final UserServiceClient userServiceClient;
+    private final LearnerHasUserInformationRepository learnerHasUserInformationRepository;
 
     @Override
     public CommonResponse getAllLearnerDetails() {
@@ -69,6 +80,8 @@ public class LearnerServiceImpl implements LearnerService {
     public CommonResponse saveLearner(LearnerDTO learnerDTO) {
         log.info("LearnerServiceImpl.saveLearner method accessed");
         CommonResponse commonResponse = new CommonResponse();
+        ObjectMapper objectMapper = new ObjectMapper();
+        LearnerResponseDTO learnerResponseDTO = new LearnerResponseDTO();
         Optional<Learner> learner = learnerRepository.findById(learnerDTO.getLearnerId());
         if(learner.isPresent()){
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
@@ -77,7 +90,21 @@ public class LearnerServiceImpl implements LearnerService {
             log.warn("Learner details not exist. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
-        Learner learnerSavedDetails = learnerRepository.save(learnerMapper.dtoToDomain(learnerDTO, new Learner()));
+        MessageResponse userResponse = userServiceClient.registerUser(learnerDTO.getSignupRequest()).getBody();
+        assert userResponse != null;
+        JwtResponse userJwtResponse = objectMapper.convertValue(userResponse.getData(), JwtResponse.class);
+        Learner learnerSavedDetails = new Learner();
+        LearnerHasUserInformation learnerHasUserInformation = new LearnerHasUserInformation();
+        if (userResponse.getData() != null) {
+            learnerSavedDetails = learnerRepository.save(learnerMapper.dtoToDomain(learnerDTO, new Learner()));
+            learnerHasUserInformation.setUserId(userJwtResponse.getId());
+            learnerHasUserInformation.setCreatedDate(LocalDateTime.now());
+            learnerHasUserInformation.setLearner(learnerSavedDetails);
+            learnerHasUserInformationRepository.save(learnerHasUserInformation);
+        }
+        learnerResponseDTO.setLearner(learnerSavedDetails);
+        learnerResponseDTO.setJwtResponse(userJwtResponse);
+        learnerResponseDTO.setLearnerHasUserInformation(learnerHasUserInformation);
         commonResponse.setStatus(HttpStatus.CREATED);
         commonResponse.setMessage("Learner details saved success!");
         commonResponse.setData(learnerMapper.domainToDto(learnerSavedDetails));
