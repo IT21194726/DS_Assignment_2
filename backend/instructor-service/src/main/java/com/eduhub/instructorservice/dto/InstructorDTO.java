@@ -1,5 +1,6 @@
 package com.eduhub.instructorservice.dto;
 
+import com.eduhub.instructorservice.dto.authentication.request.SignupRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,4 +19,5 @@ public class InstructorDTO {
     private String degreeName;
     private String fieldOfStudy;
     private String yearsOfExperience;
+    private SignupRequest signupRequest;
 }

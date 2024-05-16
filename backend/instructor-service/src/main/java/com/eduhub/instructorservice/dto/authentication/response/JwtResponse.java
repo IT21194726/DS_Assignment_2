@@ -1,4 +1,4 @@
-package com.eduhub.learnerservice.dto.authentication.response;
+package com.eduhub.instructorservice.dto.authentication.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
