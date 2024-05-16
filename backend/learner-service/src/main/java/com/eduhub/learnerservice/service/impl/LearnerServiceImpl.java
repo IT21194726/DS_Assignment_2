@@ -4,8 +4,8 @@ import com.eduhub.learnerservice.client.UserServiceClient;
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
 import com.eduhub.learnerservice.dto.LearnerResponseDTO;
-import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.dto.authentication.response.MessageResponse;
+import com.eduhub.learnerservice.dto.authentication.response.UserResponse;
 import com.eduhub.learnerservice.entity.Learner;
 import com.eduhub.learnerservice.entity.LearnerHasUserInformation;
 import com.eduhub.learnerservice.mapper.LearnerMapper;
@@ -13,7 +13,6 @@ import com.eduhub.learnerservice.repository.LearnerHasUserInformationRepository;
 import com.eduhub.learnerservice.repository.LearnerRepository;
 import com.eduhub.learnerservice.service.LearnerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -92,22 +91,22 @@ public class LearnerServiceImpl implements LearnerService {
         }
         MessageResponse userResponse = userServiceClient.registerUser(learnerDTO.getSignupRequest()).getBody();
         assert userResponse != null;
-        JwtResponse userJwtResponse = objectMapper.convertValue(userResponse.getData(), JwtResponse.class);
+        UserResponse userObjectResponse = objectMapper.convertValue(userResponse.getData(), UserResponse.class);
         Learner learnerSavedDetails = new Learner();
         LearnerHasUserInformation learnerHasUserInformation = new LearnerHasUserInformation();
         if (userResponse.getData() != null) {
             learnerSavedDetails = learnerRepository.save(learnerMapper.dtoToDomain(learnerDTO, new Learner()));
-            learnerHasUserInformation.setUserId(userJwtResponse.getId());
+            learnerHasUserInformation.setUserId(userObjectResponse.getId());
             learnerHasUserInformation.setCreatedDate(LocalDateTime.now());
             learnerHasUserInformation.setLearner(learnerSavedDetails);
             learnerHasUserInformationRepository.save(learnerHasUserInformation);
         }
         learnerResponseDTO.setLearner(learnerSavedDetails);
-        learnerResponseDTO.setJwtResponse(userJwtResponse);
+        learnerResponseDTO.setUserResponse(userObjectResponse);
         learnerResponseDTO.setLearnerHasUserInformation(learnerHasUserInformation);
         commonResponse.setStatus(HttpStatus.CREATED);
         commonResponse.setMessage("Learner details saved success!");
-        commonResponse.setData(learnerMapper.domainToDto(learnerSavedDetails));
+        commonResponse.setData(learnerResponseDTO);
         log.info("LearnerServiceImpl.saveLearner method end");
         return commonResponse;
     }
