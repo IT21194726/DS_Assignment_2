@@ -2,6 +2,9 @@ package com.eduhub.learnerservice.service;
 
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
+import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface LearnerService {
     /**
@@ -49,4 +52,6 @@ public interface LearnerService {
      * @return success or fail response of delete learners
      */
     CommonResponse deleteLearners();
+
+    JwtResponse authenticateUserDetails(LoginRequest loginRequest);
 }

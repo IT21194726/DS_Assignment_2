@@ -2,6 +2,8 @@ package com.eduhub.learnerservice.controller;
 
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
+import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.service.LearnerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -85,5 +87,11 @@ public class LearnerController {
     public ResponseEntity<CommonResponse> deleteLearners() {
         CommonResponse commonResponse = learnerService.deleteLearners();
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        JwtResponse jwtResponse = learnerService.authenticateUserDetails(loginRequest);
+        return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
     }
 }

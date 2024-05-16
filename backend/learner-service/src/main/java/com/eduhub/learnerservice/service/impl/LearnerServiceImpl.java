@@ -4,6 +4,8 @@ import com.eduhub.learnerservice.client.UserServiceClient;
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
 import com.eduhub.learnerservice.dto.LearnerResponseDTO;
+import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.dto.authentication.response.MessageResponse;
 import com.eduhub.learnerservice.dto.authentication.response.UserResponse;
 import com.eduhub.learnerservice.entity.Learner;
@@ -16,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -169,5 +172,10 @@ public class LearnerServiceImpl implements LearnerService {
         commonResponse.setData(new ArrayList<>());
         log.info("LearnerServiceImpl.deleteLearners method end");
         return commonResponse;
+    }
+
+    @Override
+    public JwtResponse authenticateUserDetails(LoginRequest loginRequest) {
+        return userServiceClient.authenticateUser(loginRequest).getBody();
     }
 }
