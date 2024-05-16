@@ -1,6 +1,7 @@
 //DTO Class
 package com.eduhub.learnerservice.dto;
 
+import com.eduhub.learnerservice.dto.authentication.request.SignupRequest;
 import lombok.*;
 
 @Getter
@@ -14,4 +15,5 @@ public class LearnerDTO {
     private String address;
     private String city;
     private String country;
+    private SignupRequest signupRequest;
 }
