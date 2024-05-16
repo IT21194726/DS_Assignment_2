@@ -1,16 +1,24 @@
 package com.eduhub.instructorservice.service.impl;
 
+import com.eduhub.instructorservice.client.UserServiceClient;
 import com.eduhub.instructorservice.common.CommonResponse;
 import com.eduhub.instructorservice.dto.InstructorDTO;
+import com.eduhub.instructorservice.dto.InstructorResponseDTO;
+import com.eduhub.instructorservice.dto.authentication.response.MessageResponse;
+import com.eduhub.instructorservice.dto.authentication.response.UserResponse;
 import com.eduhub.instructorservice.entity.Instructor;
+import com.eduhub.instructorservice.entity.InstructorHasUserInformation;
 import com.eduhub.instructorservice.mapper.InstructorMapper;
+import com.eduhub.instructorservice.repository.InstructorHasUserInformationRepository;
 import com.eduhub.instructorservice.repository.InstructorRepository;
 import com.eduhub.instructorservice.service.InstructorService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +29,8 @@ import java.util.Optional;
 public class InstructorServiceImpl implements InstructorService {
     private final InstructorRepository instructorRepository;
     private final InstructorMapper instructorMapper;
+    private final UserServiceClient userServiceClient;
+    private final InstructorHasUserInformationRepository instructorHasUserInformationRepository;
 
     @Override
     public CommonResponse getAllInstructorDetails() {
@@ -69,6 +79,8 @@ public class InstructorServiceImpl implements InstructorService {
     public CommonResponse saveInstructor(InstructorDTO instructorDTO) {
         log.info("InstructorServiceImpl.saveInstructor method accessed");
         CommonResponse commonResponse = new CommonResponse();
+        ObjectMapper objectMapper = new ObjectMapper();
+        InstructorResponseDTO instructorResponseDTO = new InstructorResponseDTO();
         Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getInstructorId());
         if(instructor.isPresent()){
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
@@ -77,10 +89,24 @@ public class InstructorServiceImpl implements InstructorService {
             log.warn("Instructor details not exist. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
-        Instructor instructorSavedDetails = instructorRepository.save(instructorMapper.dtoToDomain(instructorDTO, new Instructor()));
+        MessageResponse userResponse = userServiceClient.registerUser(instructorDTO.getSignupRequest()).getBody();
+        assert userResponse != null;
+        UserResponse userObjectResponse = objectMapper.convertValue(userResponse.getData(), UserResponse.class);
+        Instructor instructorSavedDetails = new Instructor();
+        InstructorHasUserInformation instructorHasUserInformation = new InstructorHasUserInformation();
+        if (userResponse.getData() != null) {
+            instructorSavedDetails = instructorRepository.save(instructorMapper.dtoToDomain(instructorDTO, new Instructor()));
+            instructorHasUserInformation.setUserId(userObjectResponse.getId());
+            instructorHasUserInformation.setCreatedDate(LocalDateTime.now());
+            instructorHasUserInformation.setInstructor(instructorSavedDetails);
+            instructorHasUserInformationRepository.save(instructorHasUserInformation);
+        }
+        instructorResponseDTO.setInstructor(instructorSavedDetails);
+        instructorResponseDTO.setUserResponse(userObjectResponse);
+        instructorResponseDTO.setInstructorHasUserInformation(instructorHasUserInformation);
         commonResponse.setStatus(HttpStatus.CREATED);
         commonResponse.setMessage("Instructor details saved success!");
-        commonResponse.setData(instructorMapper.domainToDto(instructorSavedDetails));
+        commonResponse.setData(instructorResponseDTO);
         log.info("InstructorServiceImpl.saveInstructor method end");
         return commonResponse;
     }
