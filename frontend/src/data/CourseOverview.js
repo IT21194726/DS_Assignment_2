@@ -21,7 +21,7 @@ const CourseOverview = [
           {
             "title": "Initiating: defining project objectives and stakeholders",
             "video": "/videos/Project_Initiation.mp4",
-            "slides": "/slides/initiating.pdf",
+            "slides": "/slides/slide1.pdf",
             "notes": "/notes/project_management_notes.pdf"
           },
           {
@@ -279,7 +279,7 @@ const CourseOverview = [
           {
             "title": "Installing Python and setting up an IDE",
             "video": "/videos/Introduction_to_Python_Course.mp4",
-            "slides": "/slides/installing_python.pdf",
+            "slides": "/slides/LectureSlide.pdf",
             "notes": '/notes/python_notes.pdf'
           },
           {

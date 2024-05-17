@@ -24,7 +24,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import MenuIcon1 from '@mui/icons-material/Menu';
-
+import NoteIcon from '@mui/icons-material/Note';
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -77,7 +77,7 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const location = useLocation();
-  const { subtopic, id, main,  } = location.state || {};
+  const { subtopic, id, main, } = location.state || {};
   const count = main + 1;
   const zoomPluginInstance = zoomPlugin();
   const { ZoomInButton, ZoomOutButton, ZoomPopover } = zoomPluginInstance;
@@ -94,7 +94,7 @@ export default function PersistentDrawerLeft() {
     setValue(newValue);
   };
 
-console.log('video :  ',subtopic.video, subtopic.notes)
+  console.log('video :  ', subtopic.video, subtopic.notes, subtopic.slides)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -108,8 +108,8 @@ console.log('video :  ',subtopic.video, subtopic.notes)
               onClick={handleDrawerOpen}
               sx={{ mr: 2, color: 'white', bgcolor: 'brown', borderRadius: 2, }}
             >
-            
-              <MenuIcon1/>
+
+              <MenuIcon1 />
             </IconButton>
             <Typography variant="h6" noWrap component="div" sx={{ color: 'brown', }}>
 
@@ -136,11 +136,11 @@ console.log('video :  ',subtopic.video, subtopic.notes)
           </DrawerHeader>
 
           <Divider />
-        
+
           <TabList onChange={handleChange} aria-label="lab API tabs example" orientation='vertical'>
             <Tab icon={<PlayCircleOutlineSharpIcon />} label="Lecture Video" value="1" />
             <Tab icon={<StickyNote2SharpIcon />} label="Notes" value="2" />
-
+            <Tab icon={<NoteIcon />} label="Slides" value="3" />
           </TabList>
 
         </Drawer>
@@ -149,7 +149,7 @@ console.log('video :  ',subtopic.video, subtopic.notes)
 
           <TabPanel value="1">
             <ReactPlayer
-              url= {subtopic.video}
+              url={subtopic.video}
               controls
               width="100%"
               height="500px"
@@ -170,8 +170,26 @@ console.log('video :  ',subtopic.video, subtopic.notes)
                 />
 
               </Worker>
-            </div></TabPanel>
+            </div>
+          </TabPanel>
+          <TabPanel value='3'>
+            <div style={{ height: "500px", marginTop: "20px", marginBottom:"20px" }}>
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                <div style={{ display: 'flex', marginBottom: '16px' }}>
+                  <ZoomInButton />
+                  <ZoomOutButton />
+                  <ZoomPopover />
+                </div>
+                <Viewer
+                  fileUrl={subtopic.slides}
+                  plugins={[
+                    zoomPluginInstance
+                  ]}
+                />
 
+              </Worker>
+            </div>
+          </TabPanel>
 
         </Main>
       </TabContext>
