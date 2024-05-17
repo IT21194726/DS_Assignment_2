@@ -1,6 +1,10 @@
+// import vr from '../vedios/Introduction_to_Python_Course.mp4'
+
 const CourseOverview = [
+
   {
     "id": 2,
+    "price": 2499,
     "name": "Project Management",
     "overview": "This course introduces you to the fundamental concepts of project management, including planning, execution, and closure. You will gain a comprehensive understanding of how to manage a project from start to finish.",
     "outcomes": [
@@ -16,9 +20,9 @@ const CourseOverview = [
         "subtopics": [
           {
             "title": "Initiating: defining project objectives and stakeholders",
-            "video": "/videos/initiating.mp4",
+            "video": "/videos/Project_Initiation.mp4",
             "slides": "/slides/initiating.pdf",
-            "notes": "/notes/initiating.docx"
+            "notes": "/notes/project_management_notes.pdf"
           },
           {
             "title": "Planning: setting scope, schedule, and budget",
@@ -256,6 +260,7 @@ const CourseOverview = [
   
   {
     "id": 3,
+    "price": 3999,
     "name": "Python Programming",
     "overview": "This course provides an in-depth understanding of Python programming. It is designed for beginners to intermediate programmers, covering fundamental to advanced topics like data structures, object-oriented programming, and web development with Python.",
     "outcomes": [
@@ -273,9 +278,9 @@ const CourseOverview = [
         "subtopics": [
           {
             "title": "Installing Python and setting up an IDE",
-            "video": "/videos/installing_python.mp4",
+            "video": "/videos/Introduction_to_Python_Course.mp4",
             "slides": "/slides/installing_python.pdf",
-            "notes": "/notes/installing_python.docx"
+            "notes": '/notes/python_notes.pdf'
           },
           {
             "title": "Writing and running your first Python script",
@@ -513,6 +518,7 @@ const CourseOverview = [
   
   {
     "id": 1,
+    "price": 2499,
     "name": "Web Development",
     "overview": "This comprehensive course in web development covers both front-end and back-end development. You'll learn to build modern, responsive websites using a range of technologies like HTML, CSS, JavaScript, and back-end frameworks.",
     "outcomes": [

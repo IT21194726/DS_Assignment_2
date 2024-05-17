@@ -4,7 +4,12 @@ import {
     Button,
     TextField,
     Typography,
-    Grid
+    Grid,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import StarIcon from '@mui/icons-material/Star';
@@ -15,9 +20,9 @@ import Rating from '@mui/material/Rating';
 function ReviewForm() {
 
     const [selectedRating, setSelectedRating] = useState(0);
-
+    const [openDialog, setOpenDialog] = useState(false);
     // Set up form control using React Hook Form
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset,formState: { errors } } = useForm({
         defaultValues: {
             name: '',
             email: '',
@@ -30,8 +35,26 @@ function ReviewForm() {
     // Submit handler
     const onSubmit = (data) => {
         console.log('Form Data:', data);
+        setOpenDialog(true);  
+        resetForm();
+        // event.preventDefault();
         // Add your form submission logic here
     };
+
+    const resetForm = () => {
+        reset({
+            name: '',
+            email: '',
+            title: '',
+            rating: 0,
+            summary: ''
+        });
+        setSelectedRating(0); // Reset the rating state as well
+    };
+    const handleCloseDialog = () => {
+        setOpenDialog(false);  // Close the dialog
+    };
+
     return (
         <Box sx={{}}>
             <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
@@ -127,7 +150,7 @@ function ReviewForm() {
                                 onChange={(event, newValue) => {
                                     setSelectedRating(newValue);
                                     field.onChange(newValue); // Update form value
-                                  }}
+                                }}
                             />
                         )}
                     />
@@ -165,6 +188,20 @@ function ReviewForm() {
                     Submit Review
                 </Button>
             </form>
+             {/* Success Dialog */}
+             <Dialog open={openDialog} onClose={handleCloseDialog}>
+                <DialogTitle>{"Review Submitted Successfully"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Thank you for submitting your review. We appreciate your feedback!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="primary" autoFocus>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     )
 }

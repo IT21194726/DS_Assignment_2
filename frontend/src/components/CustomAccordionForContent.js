@@ -11,10 +11,10 @@ export default function CustomAccordion({ topics, subtopics, count }) {
   const navigate = useNavigate();
 
 
-  const handleNavigation = (subtopic, index, count) => {
+  const handleNavigation = (subtopic, index, count, video) => {
     console.log('you clicked div tag:', index)
     // Navigate to '/test' and pass the course title as state
-    navigate('/lectures', { state: { subtopic: subtopic, id: index, main : count } });
+    navigate('/lectures', { state: { subtopic: subtopic, id: index, main : count, video : video } });
   }
 
   return (
@@ -38,7 +38,7 @@ export default function CustomAccordion({ topics, subtopics, count }) {
 
         {subtopics.map((subtopic, index) => (
           // count = count + index ,
-          <div key={index} onClick={() => handleNavigation(subtopic, index , count)}>
+          <div key={index} onClick={() => handleNavigation(subtopic, index , count, subtopics.video)}>
 
             <Typography sx={{ opacity: 1, padding: 2 }}  >{count + 1}.{index + 1}. <a href='/lectures' style={{ textDecoration: 'none', color: 'brown' }}>{subtopic.title}</a></Typography>
             <Divider sx={{ color: 'red', bgcolor: 'red' }} />
