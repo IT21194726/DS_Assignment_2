@@ -14,7 +14,7 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/login", { username, password });
+      const response = await axios.post("http://localhost:3000/api/login", { username, password });
       if (response.status === 200) {
         
         navigate("/dashboard");
@@ -24,6 +24,9 @@ function LoginPage() {
     } catch (error) {
       setError("Invalid credentials");
     }
+
+
+      
   };
 
   return (

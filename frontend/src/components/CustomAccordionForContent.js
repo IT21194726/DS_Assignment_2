@@ -11,7 +11,7 @@ export default function CustomAccordion({ topics, subtopics, count }) {
   const navigate = useNavigate();
 
 
-  const handleNavigation = (subtopic, index, count) => {
+  const handleNavigation = (subtopic, index, count, video) => {
     console.log('you clicked div tag:', index)
     
     navigate('/lectures', { state: { subtopic: subtopic, id: index, main : count } });

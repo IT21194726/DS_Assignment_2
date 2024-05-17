@@ -71,7 +71,7 @@ export default function BasicTabs({ id }) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-      
+        
         {selectedCourse ? (
           <CourseDetails
             overviewContent={selectedCourse.overview}

@@ -1,0 +1,443 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { styled, useTheme } from '@mui/material/styles';
+import {
+  Box,
+  Drawer,
+  CssBaseline,
+  AppBar as MuiAppBar,
+  Toolbar,
+  Typography,
+  Divider,
+  IconButton,
+  Tab,
+  Button,
+  Slider,
+} from '@mui/material';
+import ReactPlayer from 'react-player';
+import { useLocation } from 'react-router-dom';
+import { Worker, Viewer } from '@react-pdf-viewer/core';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import { zoomPlugin } from '@react-pdf-viewer/zoom';
+import '@react-pdf-viewer/zoom/lib/styles/index.css';
+import PlayCircleOutlineSharpIcon from '@mui/icons-material/PlayCircleOutlineSharp';
+import StickyNote2SharpIcon from '@mui/icons-material/StickyNote2Sharp';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import MenuIcon1 from '@mui/icons-material/Menu';
+
+const drawerWidth = 240;
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  }),
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  color: 'white',
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+export default function PersistentDrawerLeft() {
+  const theme = useTheme();
+  const [open, setOpen] = useState(true);
+  const location = useLocation();
+  const { subtopic, id, main } = location.state || {};
+  const count = main + 1;
+  const zoomPluginInstance = zoomPlugin();
+  const { ZoomInButton, ZoomOutButton, ZoomPopover } = zoomPluginInstance;
+  const [value, setValue] = useState('1');
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const playerRef = useRef(null);
+
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handlePlayPause = () => {
+    if (playerRef.current) {
+      if (playerRef.current.getInternalPlayer().paused) {
+        playerRef.current.getInternalPlayer().play();
+      } else {
+        playerRef.current.getInternalPlayer().pause();
+      }
+    }
+  };
+
+  const handleProgress = (state) => {
+    setProgress(state.playedSeconds);
+  };
+
+  const handleDuration = (duration) => {
+    setDuration(duration);
+  };
+
+  const handleSeekChange = (event, newValue) => {
+    if (playerRef.current) {
+      playerRef.current.seekTo(newValue / 100);
+    }
+  };
+
+  useEffect(() => {
+    console.log(`Current progress: ${progress} seconds`);
+  }, [progress]);
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <TabContext value={value}>
+        <CssBaseline />
+        <AppBar sx={{ bgcolor: 'white' }} position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              sx={{ mr: 2, color: 'white', bgcolor: 'brown', borderRadius: 2 }}
+            >
+              <MenuIcon1 />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div" sx={{ color: 'brown' }}>
+              {count}.{id + 1} {subtopic?.title}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <img src='/Edulogo.png' alt='Eduhublogo.png' height={'250px'} width={'220px'} />
+          </DrawerHeader>
+          <Divider />
+          <TabList onChange={handleChange} aria-label="lab API tabs example" orientation="vertical">
+            <Tab icon={<PlayCircleOutlineSharpIcon />} label="Lecture Video" value="1" />
+            <Tab icon={<StickyNote2SharpIcon />} label="Notes" value="2" />
+          </TabList>
+        </Drawer>
+        <Main sx={{ marginTop: 0 }} open={open}>
+          <DrawerHeader />
+          <TabPanel value="1">
+            <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+              <ReactPlayer
+                ref={playerRef}
+                url={subtopic.video}
+                width="100%"
+                height="100%"
+                controls={false} // Hide default controls
+                onProgress={handleProgress}
+                onDuration={handleDuration}
+              />
+              <div style={{ position: 'absolute', bottom: '2px', left: '10px', right: '10px', display: 'flex', alignItems: 'center' }}>
+                <Button onClick={handlePlayPause} variant="contained" color="primary">
+                  Play/Pause
+                </Button>
+                <Slider
+                  value={(progress / duration) * 100}
+                  onChange={handleSeekChange}
+                  aria-labelledby="continuous-slider"
+                  sx={{ marginLeft: 2, flexGrow: 1 }}
+                />
+                <Typography variant="body2" color="textSecondary">
+                  {progress.toFixed(2)}s / {duration.toFixed(2)}s
+                </Typography>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel value="2">
+            <div style={{ height: "900px", marginTop: "20px" }}>
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                <div style={{ display: 'flex', marginBottom: '16px' }}>
+                  <ZoomInButton />
+                  <ZoomOutButton />
+                  <ZoomPopover />
+                </div>
+                <Viewer
+                  fileUrl={subtopic.notes}
+                  plugins={[zoomPluginInstance]}
+                />
+              </Worker>
+            </div>
+          </TabPanel>
+        </Main>
+      </TabContext>
+    </Box>
+  );
+}
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import ScheduleIcon from '@mui/icons-material/Schedule';
+import PeopleIcon from '@mui/icons-material/People';
+import LanguageIcon from '@mui/icons-material/Language';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import PaymentIcon from '@mui/icons-material/Payment';
+import ColorTabs from '../../components/ColorTabs';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Grid, Card, CardMedia, CardContent, CardActions, Button, Typography, Box, Divider } from '@mui/material';
+import Sidebar from '../../components/Sidebar';
+import CourseOverview from '../../data/CourseOverview';
+// import PayHerePayment from '../PayHere/PayHerePayment';
+
+export default function CourseDetails() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { course, image, id } = location.state || {};
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [payHereLoaded, setPayHereLoaded] = useState(false);
+  useEffect(() => {
+    if (typeof payhere !== 'undefined') {
+      console.log("PayHere SDK successfully loaded.");
+      setPayHereLoaded(true); // Set to true if PayHere is loaded
+    } else {
+      console.error("PayHere is not loaded");
+    }
+  }, []);
+
+
+  const selectedCourse = CourseOverview.find(overview => overview.id === id);
+  const  merchant_id = "1226704";
+  const order_id = "ORDER_12345";
+  const amount = selectedCourse.price;
+  const currency = "LKR";
+  const merchantSecret = "MTI3MTEyMTYzOTEwMzcwODMxNDQxMjQzMDQ4NzUxOTcyOTE4ODUz";
+  const items = selectedCourse.name;
+  const first_name = "John";
+  const last_name = "Doe";
+  const email = "johndoe@gmail.com";
+  const phone = "0771234567";
+  const address = "123, Main Street";
+  const city = "Colombo";
+  const country = "Sri Lanka";
+
+  console.log('you clicked div tag of :', course);
+  const handleNavigation = async () => {
+
+
+    console.log('amount : ', amount)
+    // Request the hash from the backend
+    const response = await axios.post("http://localhost:5000/generate-hash", {
+      merchant_id,
+      order_id,
+      amount,
+      currency,
+      merchant_secret: merchantSecret
+    });
+
+    const hash = response.data.hash;
+
+    const payment = {
+      sandbox: true,
+      merchant_id,
+      return_url: "http://localhost:3000/",
+      cancel_url: "http://localhost:3000/",
+      notify_url: "https://yourwebsite.com/notify",
+      order_id,
+      items,
+      amount,
+      currency,
+      hash,
+      first_name,
+      last_name,
+      email,
+      phone,
+      address,
+      city,
+      country
+    };
+    payhere.onCompleted = function (orderId) {
+      console.log("Payment completed. OrderID:" + orderId);
+      navigate('/content', { state: { course: course, image: image, id: id } });
+    };
+
+    if (payHereLoaded) {
+      payhere.startPayment(payment);
+    } else {
+      console.error('Attempted to trigger payment before PayHere was loaded.');
+    }
+
+  };
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+
+
+  return (
+    <div className={`homepage ${sidebarVisible ? "with-sidebar" : ""}`} >
+
+
+      <header className="header">
+        <div className="header-content">
+          <button className="menu-btn" onClick={toggleSidebar}>
+            ☰
+          </button>
+          <img src="/Edulogo.png" alt="EduHub Logo" className="home2logo" />
+          <h1 className="title">EduHub - Open Learning Platform</h1>
+        </div>
+      </header>
+      <Sidebar isOpen={sidebarVisible} />
+
+
+
+
+      <div style={{ margin: 50, }}>
+        <Grid container spacing={4}>
+          {/* Main Content Section */}
+          <Grid item xs={12} md={8}>
+            <div>
+              {course && image ? (
+                <div>
+                  <h1 style={{ marginBottom: 2 }}>{course}</h1>
+                  <Divider />
+                  <img src={image} alt={course} style={{ width: '100%', height: 'auto', marginTop: 5 }} />
+                </div>
+              ) : (
+                <p>No course data was provided.</p>
+              )}
+              <div style={{ marginTop: 40 }}>
+                <ColorTabs id={id} />
+              </div>
+
+            </div>
+          </Grid>
+
+          {/* Card Section */}
+          <Grid item xs={12} md={4}>
+            <Card elevation={16} sx={{ marginTop: 7, borderRadius: 5 }}>
+              <CardMedia component="img" image={image} alt={course} />
+              <CardContent>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{course}</Typography>
+                <Typography variant="body2">
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </Typography>
+              </CardContent>
+              <Box px={2} py={1}>
+                <Box display="flex" alignItems="center" py={2}>
+                  <HomeOutlinedIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Instructor:</strong> Jack Morkel
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box display="flex" alignItems="center" py={2}>
+                  <LibraryBooksIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Lectures:</strong> 12
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box display="flex" alignItems="center" py={2} sx={{ borderBottomWidth: 1, borderColor: 'black' }}>
+                  <ScheduleIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Duration:</strong> 5 weeks
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box display="flex" alignItems="center" py={2}>
+                  <PeopleIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Enrolled:</strong> 15k students
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box display="flex" alignItems="center" py={2}>
+                  <LanguageIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Language:</strong> English
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box display="flex" alignItems="center" py={2}>
+                  <PaymentIcon fontSize="medium" sx={{ color: '#0096FF', marginLeft: 2 }} />
+                  <Typography variant="body2" sx={{ marginLeft: 3 }}>
+                    <strong>Price:</strong> {selectedCourse.price} LKR
+                  </Typography>
+                </Box>
+              </Box>
+
+              <CardActions sx={{ justifyContent: 'center', padding: 3 }}>
+
+                <Button
+                  sx={{ width: '100%', padding: 2, fontWeight: 'bold', borderRadius: 3 }}
+                  variant="contained"
+                  startIcon={<PersonAddIcon fontSize='medium' color='white' />}
+                  onClick={() => handleNavigation()}
+                >
+                  Enroll Now
+                </Button>
+
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
+
+      </div>
+      <footer className="dashboard-footer">
+        <div className="dashboard-contact-info">
+          <h4>Contact Us</h4>
+          <p>EduHub</p>
+          <p>Phone: 011 309 278</p>
+          <p>Email: eduhub@example.com</p>
+        </div>
+      </footer>
+
+
+    </div>
+
+  );
+}
