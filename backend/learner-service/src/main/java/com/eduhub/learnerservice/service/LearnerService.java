@@ -54,4 +54,12 @@ public interface LearnerService {
     CommonResponse deleteLearners();
 
     JwtResponse authenticateUserDetails(LoginRequest loginRequest);
+
+    /**
+     * Get learner and user by learner id
+     *
+     * @param learnerId - required data for get learner and user by id
+     * @return success or fail response of get learner and user by id
+     */
+    CommonResponse getLearnersAndUserDetailsById(Long learnerId);
 }

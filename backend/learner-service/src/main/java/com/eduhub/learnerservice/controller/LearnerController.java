@@ -2,6 +2,7 @@ package com.eduhub.learnerservice.controller;
 
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
+import com.eduhub.learnerservice.dto.LearnerResponseDTO;
 import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
 import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.service.LearnerService;
@@ -31,7 +32,21 @@ public class LearnerController {
     }
 
     /**
-     * Get course by learner id
+     * Get learner and user by learner id
+     *
+     * @param learnerId - required data for get learner and user by id
+     * @return success or fail response of get learner and user by id
+     */
+    @GetMapping("")
+    public ResponseEntity<CommonResponse> getLearnersAndUserDetailsById(@RequestParam("learnerId") @NotNull Long learnerId) {
+        CommonResponse commonResponse = learnerService.getLearnersAndUserDetailsById(learnerId);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+
+
+    /**
+     * Get learner by learner id
      *
      * @param learnerId - required data for get learner by id
      * @return success or fail response of get learner by id

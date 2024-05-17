@@ -16,6 +16,7 @@ import com.eduhub.userservice.security.services.UserDetailsImpl;
 import com.eduhub.userservice.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,9 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -147,5 +146,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             userId = String.format(Constant.ADMIN_ID_FORMAT, LocalDate.now().getYear(), userNumber);
         }
         return userId;
+    }
+
+    @Override
+    public ResponseEntity<MessageResponse> getUserById(Long userId) {
+        MessageResponse messageResponse = new MessageResponse();
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            messageResponse.setMessage("User details not available");
+            messageResponse.setData(new ArrayList<>());
+            return new ResponseEntity<>(messageResponse, HttpStatus.OK);
+        }
+        messageResponse.setMessage("User details is available");
+        messageResponse.setData(user);
+        return new ResponseEntity<>(messageResponse, HttpStatus.OK);
     }
 }

@@ -115,6 +115,28 @@ public class LearnerServiceImpl implements LearnerService {
     }
 
     @Override
+    public CommonResponse getLearnersAndUserDetailsById(Long learnerId) {
+        log.info("LearnerServiceImpl.getLearnersAndUserDetailsById method accessed!");
+        CommonResponse commonResponse = new CommonResponse();
+        ObjectMapper objectMapper = new ObjectMapper();
+        LearnerResponseDTO learnerResponseDTO = new LearnerResponseDTO();
+        Optional<Learner> learner = learnerRepository.findById(learnerId);
+        if (learner.isEmpty()) {
+            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+            commonResponse.setMessage("Learner details mot exist!");
+            commonResponse.setData(new ArrayList<>());
+            log.warn("Learner details not exist. message : {}", commonResponse.getMessage());
+            return commonResponse;
+        }
+        MessageResponse userResponse = userServiceClient.registerUser(learnerDTO.getSignupRequest()).getBody();
+        assert userResponse != null;
+        UserResponse userObjectResponse = objectMapper.convertValue(userResponse.getData(), UserResponse.class);
+
+        log.info("LearnerServiceImpl.getLearnersAndUserDetailsById method end!");
+        return null;
+    }
+
+    @Override
     public CommonResponse updateLearner(LearnerDTO learnerDTO) {
         log.info("LearnerServiceImpl.updateLearner method accessed");
         CommonResponse commonResponse = new CommonResponse();
@@ -178,4 +200,6 @@ public class LearnerServiceImpl implements LearnerService {
     public JwtResponse authenticateUserDetails(LoginRequest loginRequest) {
         return userServiceClient.authenticateUser(loginRequest).getBody();
     }
+
+
 }
