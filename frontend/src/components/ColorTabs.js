@@ -97,7 +97,7 @@ export default function BasicTabs({ id }) {
             Gosh william Im telling crikey burke I dont want no agro A bit of hows your father bugger all mate off his nut that, what a plonker cuppa owt to do
           </Typography>
           <Grid container sx={{ marginX: 2, marginY: 2 }} >
-            {/* Main Review Score */}
+           
             <Grid item xs={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', bgcolor: '' }}>
               <Typography variant="h2" component="div" sx={{ fontWeight: 'bold' }}>
                 {totalRating}
@@ -105,7 +105,7 @@ export default function BasicTabs({ id }) {
               <StarIcon sx={{ color: '#FFC107', fontSize: 32 }} />
               <Typography variant="subtitle1">{`${totalReviews} Ratings`}</Typography>
             </Grid>
-            {/* Detailed Rating Breakdown */}
+          
             <Grid item xs={8} sx={{ bgcolor: '' }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                 Detailed Rating

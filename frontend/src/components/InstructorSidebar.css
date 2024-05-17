@@ -1,27 +1,24 @@
-/* Sidebar.css */
-
-/* Sidebar.css */
 
 .sidebar {
     position: fixed;
-    align-items: center; /* Center horizontally */
+    align-items: center; 
     width: 250px;
     background-color: #fff;
     position: fixed;
     top: 0;
     bottom: 0;
-    left: -250px; /* Hidden off-screen initially */
+    left: -250px; 
     transition: left 0.3s ease;
-    z-index: 1000; /* Place it above other content */
+    z-index: 1000; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar.open {
-    left: 0; /* Slides into view */
+    left: 0; 
 }
 
 
-/* Ensure the sidebar doesn't overlap the header */
+
 .header {
     z-index: 2000;
     position: relative;
@@ -29,11 +26,11 @@
 
 .logoo {
     margin-left: 20px;
-    max-width: 220px; /* Increase the width */
-    max-height: 220px; /* Increase the height */
-    width: auto; /* Maintain aspect ratio */
+    max-width: 220px; 
+    max-height: 220px; 
+    width: auto; 
     height: auto;
-    margin-bottom: 20px; /* Add some spacing below the logo */
+    margin-bottom: 20px; 
 }
 
 nav ul {

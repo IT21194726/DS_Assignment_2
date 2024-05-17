@@ -37,7 +37,7 @@ function Dashboard() {
   const coursesToShow = 1;
   const handleNavigation = (courseTitle, image, id) => {
     console.log('you clicked div tag:', courseTitle)
-    // Navigate to '/test' and pass the course title as state
+    
     navigate('/course', { state: { course: courseTitle, image: image, id: id } });
   }
   const handleRecentCourse = (courseTitle, image, id) => {
@@ -60,7 +60,6 @@ function Dashboard() {
     currentIndex + coursesToShow
   );
 
-  // Toggle sidebar visibility
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };

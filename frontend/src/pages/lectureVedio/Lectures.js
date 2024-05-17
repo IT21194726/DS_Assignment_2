@@ -24,7 +24,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import MenuIcon1 from '@mui/icons-material/Menu';
-// import logo from '../../../public/Edulogo.png'
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -68,7 +68,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
+
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
@@ -108,8 +108,8 @@ console.log('video :  ',subtopic.video, subtopic.notes)
               onClick={handleDrawerOpen}
               sx={{ mr: 2, color: 'white', bgcolor: 'brown', borderRadius: 2, }}
             >
-              {/* <MenuIcon sx={{ fontSize: 'large' }} /> */}
-              <MenuIcon1 />
+            
+              <MenuIcon1/>
             </IconButton>
             <Typography variant="h6" noWrap component="div" sx={{ color: 'brown', }}>
 
@@ -136,23 +136,7 @@ console.log('video :  ',subtopic.video, subtopic.notes)
           </DrawerHeader>
 
           <Divider />
-          {/* <Tabs
-            orientation="vertical"
-            value={tab}
-            onChange={handleChangeTab}
-            // indicatorColor='primary'
-            // textColor="primary"
-            variant="fullWidth"
-            aria-label="icon tabs example"
-
-          >
-            <Tab
-              icon={<PlayCircleOutlineSharpIcon />}
-              label="Lecture Video" />
-
-            <Divider />
-            <Tab icon={<StickyNote2SharpIcon />} label="Lecture Video"/>
-          </Tabs> */}
+        
           <TabList onChange={handleChange} aria-label="lab API tabs example" orientation='vertical'>
             <Tab icon={<PlayCircleOutlineSharpIcon />} label="Lecture Video" value="1" />
             <Tab icon={<StickyNote2SharpIcon />} label="Notes" value="2" />

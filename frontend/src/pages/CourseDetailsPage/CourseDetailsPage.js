@@ -113,7 +113,7 @@ export default function CourseDetails() {
 
       <div style={{ margin: 50, }}>
         <Grid container spacing={4}>
-          {/* Main Content Section */}
+          
           <Grid item xs={12} md={8}>
             <div>
               {course && image ? (
@@ -132,7 +132,7 @@ export default function CourseDetails() {
             </div>
           </Grid>
 
-          {/* Card Section */}
+        
           <Grid item xs={12} md={4}>
             <Card elevation={16} sx={{ marginTop: 7, borderRadius: 5 }}>
               <CardMedia component="img" image={image} alt={course} />

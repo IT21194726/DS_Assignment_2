@@ -59,7 +59,7 @@ const AdminCourses = () => {
 
   return (
     <div className={`add-course-page ${sidebarVisible ? "with-sidebar" : ""}`}>
-      {/* Header Section */}
+     
       <header className={`header ${sidebarVisible ? "shifted" : ""}`}>
         <div className="header-content">
           <button className="menu-btn" onClick={toggleSidebar}>
@@ -70,10 +70,10 @@ const AdminCourses = () => {
         </div>
       </header>
 
-      {/* Sidebar Navigation */}
+     
       <Sidebar isOpen={sidebarVisible} />
 
-      {/* Main Content Section */}
+      
       <div className={`mmain-content ${sidebarVisible ? "shifted" : ""}`}>
     <div className="AC-page">
      

@@ -1,4 +1,4 @@
-/* Main Page Layout */
+
 .instructor-page {
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
   
  
   
-  /* Basic Info Section */
+
   .basic-info, .outcomes-structure, .main-topics, .quiz-box {
     margin-bottom: 20px;
     padding: 15px;
@@ -65,7 +65,7 @@
     font-weight: bold;
   }
   
-  /* Main Topic, Subtopic, Quiz */
+
   .topic-box, .subtopic-box, .quiz-box {
     margin-bottom: 15px;
     padding: 15px;
@@ -125,7 +125,7 @@
     overflow: hidden; 
   }
   
-  /* Adjusted Page Layout */
+ 
 .add-course-page {
     display: flex;
     flex-direction: column;
@@ -136,7 +136,7 @@
     width: 100%;
     transition: all 0.3s ease-in-out;
   }
-  /* Adjusted Page Layout */
+  
 .add-course-page {
   display: flex;
   flex-direction: column;
@@ -151,8 +151,8 @@
 
 
 .shifted {
-  margin-left: 250px; /* Sidebar width */
-  width: calc(100% - 250px); /* Adjust to remaining screen size */
+  margin-left: 250px; 
+  width: calc(100% - 250px); 
 }
 
 .main-content {
@@ -164,15 +164,15 @@
 }
 
  .main-content {
-  margin-left: 250px; /* Adjust to sidebar width */
+  margin-left: 250px; 
   width: calc(100% - 250px);
 }
 
 
   
   .shifted {
-    margin-left: 250px; /* Sidebar width */
-    width: calc(100% - 250px); /* Adjust to remaining screen size */
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
   }
   
   .main-content {
@@ -184,7 +184,7 @@
   }
   
   .with-sidebar .main-content, .with-sidebar .header {
-    /* Adjust to sidebar width */
+    
     width: calc(100% - 250px);
   }
   
@@ -193,7 +193,7 @@
     margin-left: 250px;
   }
 
-  /* AddCourse.css */
+
 .step-content input[type="text"],
 .step-content input[type="file"],
 .step-content textarea {
@@ -201,18 +201,18 @@
   padding: 10px;
   margin-top: 10px;
   margin-right: 100px;
-  border: 2px solid #b23b3b; /* Red border */
-  border-radius: 8px; /* Rounded corners */
+  border: 2px solid #b23b3b; 
+  border-radius: 8px; 
 }
 
 .step-content input:focus,
 .step-content textarea:focus {
-  border-color: #e44d4d; /* Lighter shade of red when focused */
+  border-color: #e44d4d; 
   outline: none;
 }
 
 .stepper-buttons button {
-  background-color: #b23b3b; /* Button color */
+  background-color: #b23b3b; 
   color: #fff;
   padding: 16px 26px;
   margin: 5px;
@@ -222,7 +222,7 @@
 }
 
 .stepper-buttons button:hover {
-  background-color: #e44d4d; /* Darken the button on hover */
+  background-color: #e44d4d; 
 }
 
 
@@ -231,7 +231,7 @@
 
 
 
- /* Stepper Styles */
+
  .step-content {
   margin-top: 20px;
   padding: 20px;
@@ -242,15 +242,15 @@
 }
 
 .MuiStepLabel-label {
-  color: #b23b3b !important; /* !important is used to override the default styling */
+  color: #b23b3b !important; 
 }
 
-/* Change the active step icon color to red */
+
 .MuiStepIcon-root.Mui-active {
   color: #b23b3b !important;
 }
 
-/* Change the completed step icon color to red */
+
 .MuiStepIcon-root.Mui-completed {
   color: #b23b3b !important;
 }
