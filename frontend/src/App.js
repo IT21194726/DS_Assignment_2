@@ -17,7 +17,7 @@ import InstructorLearnerProgress from "./pages/Instructor/InstructorLearnerProgr
 import EditCourse from "./pages/Instructor/EditCourse/EditCourse";
 import AdminCourses from "./pages/Admin/AdminCourses/AdminCourses";
 import AdminViewCourseDetails from "./pages/Admin/AdminViewCourseDetails/AdminViewCourseDetails";
-
+import PayHerePayment from './pages/PayHere/PayHerePayment';
 function App() {
   return (
     <Router>
@@ -29,6 +29,7 @@ function App() {
         <Route path="/sitehome" element={<SiteHome />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/course" element={<CourseDetailsPage />} />
+        <Route path="/payment" element={<PayHerePayment />} />
         <Route path="/content" element={<CourseContentPage />} />
         <Route path ="/lectures" element={<Lectures/>} />
         <Route path="/instructordashboard" element={<InstructorDashboard />} />
