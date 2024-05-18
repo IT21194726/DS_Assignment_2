@@ -60,7 +60,7 @@ public class CourseServiceImpl implements CourseService {
             commonResponse.setStatus(HttpStatus.OK);
             commonResponse.setData(new ArrayList<>());
             commonResponse.setMessage("Course details is not available!");
-            log.warn("Course details not available. message : {} ", commonResponse.getMessage());
+            log.warn("Course fetch details not available. message : {} ", commonResponse.getMessage());
             return commonResponse;
         }
         commonResponse.setStatus(HttpStatus.OK);
@@ -79,7 +79,7 @@ public class CourseServiceImpl implements CourseService {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Course details already exist!");
             commonResponse.setData(courseMapper.domainToDto(course.get()));
-            log.warn("Course details not exist. message : {}", commonResponse.getMessage());
+            log.warn("Course save details not exist. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
         Course courseSavedDetails = courseRepository.save(courseMapper.dtoToDomain(courseDTO, new Course()));
@@ -132,21 +132,21 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CommonResponse deleteCourses() {
-        log.info("CourseServiceImpl.deleteCourseDetailsById method accessed");
+        log.info("CourseServiceImpl.deleteCourses method accessed");
         CommonResponse commonResponse = new CommonResponse();
         List<Course> course = courseRepository.findAll();
         if(course.isEmpty()) {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Delete course details not available!");
             commonResponse.setData(new ArrayList<>());
-            log.warn("Course details not available. message : {}", commonResponse.getMessage());
+            log.warn("Course details for delete not available. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
         courseRepository.deleteAll();
         commonResponse.setStatus(HttpStatus.OK);
         commonResponse.setMessage("Course details is delete success!");
         commonResponse.setData(new ArrayList<>());
-        log.info("CourseServiceImpl.deleteCourseDetailsById method end");
+        log.info("CourseServiceImpl.deleteCourses method end");
         return commonResponse;
     }
 

@@ -5,6 +5,8 @@ import com.eduhub.learnerservice.client.UserServiceClient;
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
 import com.eduhub.learnerservice.dto.LearnerResponseDTO;
+import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.dto.authentication.response.MessageResponse;
 import com.eduhub.learnerservice.dto.authentication.response.UserResponse;
 import com.eduhub.learnerservice.entity.Learner;
@@ -141,7 +143,7 @@ public class LearnerServiceImpl implements LearnerService {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Delete learner details not available!");
             commonResponse.setData(new ArrayList<>());
-            log.warn("Learner details not available. message : {}", commonResponse.getMessage());
+            log.warn("Learner details are not available. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
         learnerRepository.deleteById(learnerId);
@@ -161,7 +163,7 @@ public class LearnerServiceImpl implements LearnerService {
             commonResponse.setStatus(HttpStatus.BAD_REQUEST);
             commonResponse.setMessage("Delete learners details not available!");
             commonResponse.setData(new ArrayList<>());
-            log.warn("Learner details not available. message : {}", commonResponse.getMessage());
+            log.warn("Learner details for delete not available. message : {}", commonResponse.getMessage());
             return commonResponse;
         }
         learnerRepository.deleteAll();
@@ -170,5 +172,10 @@ public class LearnerServiceImpl implements LearnerService {
         commonResponse.setData(new ArrayList<>());
         log.info("LearnerServiceImpl.deleteLearners method end");
         return commonResponse;
+    }
+
+    @Override
+    public JwtResponse authenticateUserDetails(LoginRequest loginRequest) {
+        return userServiceClient.authenticateUser(loginRequest).getBody();
     }
 }
