@@ -165,6 +165,9 @@ public class CourseServiceImpl implements CourseService {
         List<MediaDTO> mediaDTOS = new ArrayList<>();
         files.forEach(file -> {
             try {
+                if (file.getSize() > 10485760) {
+                    throw new IllegalStateException("File size exceeds maximum allowed limit");
+                }
                 mediaDTOS.add(mediaEntityMapper.fileToDto(file, new MediaDTO()));
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
