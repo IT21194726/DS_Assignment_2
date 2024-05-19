@@ -42,7 +42,6 @@ function App() {
           <Route path="/editcourse/:courseId" element={<EditCourse />} />
           <Route path="/admincourses" element={<AdminCourses />} />
           <Route path="/adminviewcoursedetails/:courseId" element={<AdminViewCourseDetails />} />
-
         </Routes>
       </Router>
       <ToastContainer />
