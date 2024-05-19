@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Grid, Card, CardMedia, CardContent, CardActions, Button, Typography, Box, Divider } from '@mui/material';
 import Sidebar from '../../components/Sidebar';
 import CourseOverview from '../../data/CourseOverview';
-// import PayHerePayment from '../PayHere/PayHerePayment';
+import PayHerePayment from '../PayHere/PayHerePayment';
 
 export default function CourseDetails() {
   const location = useLocation();
@@ -35,57 +35,57 @@ export default function CourseDetails() {
 
   console.log('you clicked div tag of :', course);
   const handleNavigation = async () => {
+    navigate('/payment', { state: { course: course, image: image, id: id, price: selectedCourse.price } });
+    // const merchantId = "1226704";
+    // const orderId = "ORDER_12345";
+    // const amount = "109.00";
+    // const currency = "LKR";
+    // const merchantSecret = "MTI3MTEyMTYzOTEwMzcwODMxNDQxMjQzMDQ4NzUxOTcyOTE4ODUz";
 
-    const merchantId = "1226704";
-    const orderId = "ORDER_12345";
-    const amount = "109.00";
-    const currency = "LKR";
-    const merchantSecret = "MTI3MTEyMTYzOTEwMzcwODMxNDQxMjQzMDQ4NzUxOTcyOTE4ODUz";
+    // // Request the hash from the backend
+    // const response = await axios.post("http://localhost:5000/generate-hash", {
+    //   merchant_id: merchantId,
+    //   order_id: orderId,
+    //   amount,
+    //   currency,
+    //   merchant_secret: merchantSecret
+    // });
 
-    // Request the hash from the backend
-    const response = await axios.post("http://localhost:5000/generate-hash", {
-      merchant_id: merchantId,
-      order_id: orderId,
-      amount,
-      currency,
-      merchant_secret: merchantSecret
-    });
+    // const hash = response.data.hash;
 
-    const hash = response.data.hash;
-
-    const payment = {
-      sandbox: true,
-      merchant_id: merchantId,
-      return_url: "http://localhost:3000/",
-      cancel_url: "http://localhost:3000/",
-      notify_url: "https://little-needles-double.loca.lt/notify",
-      order_id: orderId,
-      items: "Python Programming",
-      amount,
-      currency,
-      hash,
-      first_name: "John",
-      last_name: "Doe",
-      email: "muhammedfazilmufeel@gmail.com",
-      phone: "0757416964",
-      address: "123, Main Street",
-      city: "Colombo",
-      country: "Sri Lanka"
-    };
-    payhere.onCompleted = function (orderId) {
-      console.log("Payment completed. OrderID:" + orderId);
-      // console.log('status_code', status_code)
+    // const payment = {
+    //   sandbox: true,
+    //   merchant_id: "1226704",
+    //   return_url: "http://localhost:3000/",
+    //   cancel_url: "http://localhost:3000/",
+    //   notify_url: "https://little-needles-double.loca.lt/notify",
+    //   order_id: "ORDER_12345",
+    //   items: "Python Programming",
+    //   amount : "109.00",
+    //   currency : "LKR",
+    //   hash,
+    //   first_name: "John",
+    //   last_name: "Doe",
+    //   email: "muhammedfazilmufeel@gmail.com",
+    //   phone: "0757416964",
+    //   address: "123, Main Street",
+    //   city: "Colombo",
+    //   country: "Sri Lanka"
+    // };
+    // payhere.onCompleted = function (orderId) {
+    //   console.log("Payment completed. OrderID:" + orderId);
+    //   // console.log('status_code', status_code)
 
 
 
-      navigate('/content', { state: { course: course, image: image, id: id } });
-    };
+    //   navigate('/content', { state: { course: course, image: image, id: id } });
+    // };
 
-    if (payHereLoaded) {
-      payhere.startPayment(payment);
-    } else {
-      console.error('Attempted to trigger payment before PayHere was loaded.');
-    }
+    // if (payHereLoaded) {
+    //   payhere.startPayment(payment);
+    // } else {
+    //   console.error('Attempted to trigger payment before PayHere was loaded.');
+    // }
 
   };
   const toggleSidebar = () => {
