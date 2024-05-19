@@ -4,6 +4,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import "./AddCourse.css";
+import axios from "axios";
 
 const steps = [
   "Basic Info",
@@ -104,6 +105,34 @@ const AddCourse = () => {
       mainTopics,
     });
   };
+
+  const handleSubmits = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("data", JSON.stringify({
+      courseId: 0, // Assuming courseId is auto-generated or not needed for this request
+      title: courseTitle,
+      outcomes,
+      structure,
+      mainTopics
+    }));
+
+    if (titleImage) {
+      formData.append("files", titleImage, titleImage.name);
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8090/api/course/with-file", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+    }
+  };
+  
 
 
   const renderStepContent = (step) => {
@@ -383,3 +412,4 @@ const AddCourse = () => {
 };
 
 export default AddCourse;
+
