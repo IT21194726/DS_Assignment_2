@@ -101,7 +101,7 @@ public class LearnerServiceImpl implements LearnerService {
             learnerSavedDetails = learnerRepository.save(learnerMapper.dtoToDomain(learnerDTO, new Learner()));
             learnerHasUserInformation.setUserId(userObjectResponse.getId());
             learnerHasUserInformation.setCreatedDate(LocalDateTime.now());
-            learnerHasUserInformation.setLearner(learnerSavedDetails);
+            learnerHasUserInformation.setLearnerId(learnerSavedDetails.getLearnerId());
             learnerHasUserInformationRepository.save(learnerHasUserInformation);
         }
         learnerResponseDTO.setLearner(learnerSavedDetails);
@@ -178,4 +178,45 @@ public class LearnerServiceImpl implements LearnerService {
     public JwtResponse authenticateUserDetails(LoginRequest loginRequest) {
         return userServiceClient.authenticateUser(loginRequest).getBody();
     }
+
+    @Override
+    public CommonResponse getLearnersAndUserDetailsById(Long learnerId) {
+        log.info("LearnerServiceImpl.getLearnersAndUserDetailsById method accessed!");
+        CommonResponse commonResponse = new CommonResponse();
+        ObjectMapper objectMapper = new ObjectMapper();
+        MessageResponse userResponse;
+        LearnerResponseDTO learnerResponseDTO = new LearnerResponseDTO();
+
+        Optional<Learner> learner = learnerRepository.findById(learnerId);
+
+        if (learner.isEmpty()) {
+            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+            commonResponse.setMessage("Learner details not exist!");
+            commonResponse.setData(learner);
+            log.warn("Learner with user details not exist. message : {}", commonResponse.getMessage());
+            return commonResponse;
+        }
+        Optional<LearnerHasUserInformation> learnerHasUserInformation = learnerHasUserInformationRepository.findByLearnerId(learnerId);
+        if (learnerHasUserInformation.isEmpty()) {
+            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+            commonResponse.setMessage("learnerHasUserInformation details not exist!");
+            commonResponse.setData(learner);
+            log.warn("learnerHasUserInformation with user details not exist. message : {}", commonResponse.getMessage());
+            return commonResponse;
+        } else  {
+            userResponse = userServiceClient.getUserById(learnerHasUserInformation.get().getUserId()).getBody();
+        }
+        assert userResponse != null;
+        UserResponse userObjectResponse = objectMapper.convertValue(userResponse.getData(), UserResponse.class);
+        learnerResponseDTO.setUserResponse(userObjectResponse);
+        learnerResponseDTO.setLearner(learner.get());
+        learnerResponseDTO.setLearnerHasUserInformation(learnerHasUserInformation.get());
+        commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+        commonResponse.setMessage("learnerHasUserInformation details is exist!");
+        commonResponse.setData(learnerResponseDTO);
+        log.info("learnerHasUserInformation with user details is exist. message : {}", commonResponse.getMessage());
+        log.info("LearnerServiceImpl.getLearnersAndUserDetailsById method end!");
+        return commonResponse;
+    }
+
 }

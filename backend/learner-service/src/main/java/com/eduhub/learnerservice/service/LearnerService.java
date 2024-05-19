@@ -53,4 +53,6 @@ public interface LearnerService {
     CommonResponse deleteLearners();
 
     JwtResponse authenticateUserDetails(LoginRequest loginRequest);
+
+    CommonResponse getLearnersAndUserDetailsById(Long learnerId);
 }

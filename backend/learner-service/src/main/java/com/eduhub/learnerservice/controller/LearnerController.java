@@ -94,4 +94,18 @@ public class LearnerController {
         JwtResponse jwtResponse = learnerService.authenticateUserDetails(loginRequest);
         return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
     }
+
+    /**
+     * Get learner and user by learner id
+     *
+     * @param learnerId - required data for get learner and user by id
+     * @return success or fail response of get learner and user by id
+     */
+    @GetMapping("/learnerWithUser")
+    public ResponseEntity<CommonResponse> getLearnersAndUserDetailsById(@RequestParam("learnerId") @NotNull Long learnerId) {
+        CommonResponse commonResponse = learnerService.getLearnersAndUserDetailsById(learnerId);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+
 }
