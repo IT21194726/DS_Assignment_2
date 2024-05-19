@@ -18,9 +18,12 @@ public class LearnerHasUserInformation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "learner_id", nullable = false)
-    private Learner learner;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn (name = "learner_id", nullable = false)
+//    private Learner learner;
+
+    @Column (name = "learner_id", nullable = false)
+    private Long learnerId;
 
     @Column (name = "user_id", nullable = false)
     private Long userId;

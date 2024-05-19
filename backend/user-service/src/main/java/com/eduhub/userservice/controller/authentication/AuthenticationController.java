@@ -26,4 +26,9 @@ public class AuthenticationController {
 	public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		return authenticationService.registerUserDetails(signUpRequest);
 	}
+
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<MessageResponse> getUserById(@Valid @PathVariable("userId") Long userId) {
+		return authenticationService.getUserById(userId);
+	}
 }

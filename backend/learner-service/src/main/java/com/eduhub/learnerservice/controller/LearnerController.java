@@ -2,6 +2,8 @@ package com.eduhub.learnerservice.controller;
 
 import com.eduhub.learnerservice.common.CommonResponse;
 import com.eduhub.learnerservice.dto.LearnerDTO;
+import com.eduhub.learnerservice.dto.authentication.request.LoginRequest;
+import com.eduhub.learnerservice.dto.authentication.response.JwtResponse;
 import com.eduhub.learnerservice.service.LearnerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -86,4 +88,24 @@ public class LearnerController {
         CommonResponse commonResponse = learnerService.deleteLearners();
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
+
+    @PostMapping("/signin")
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        JwtResponse jwtResponse = learnerService.authenticateUserDetails(loginRequest);
+        return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
+    }
+
+    /**
+     * Get learner and user by learner id
+     *
+     * @param learnerId - required data for get learner and user by id
+     * @return success or fail response of get learner and user by id
+     */
+    @GetMapping("/learnerWithUser")
+    public ResponseEntity<CommonResponse> getLearnersAndUserDetailsById(@RequestParam("learnerId") @NotNull Long learnerId) {
+        CommonResponse commonResponse = learnerService.getLearnersAndUserDetailsById(learnerId);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+
 }

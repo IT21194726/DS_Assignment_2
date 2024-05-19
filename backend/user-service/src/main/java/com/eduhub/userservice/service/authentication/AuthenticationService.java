@@ -10,4 +10,6 @@ public interface AuthenticationService {
     ResponseEntity<JwtResponse> authenticateUserDetails(LoginRequest loginRequest);
 
     ResponseEntity<MessageResponse> registerUserDetails(SignupRequest signUpRequest);
+
+    ResponseEntity<MessageResponse> getUserById(Long userId);
 }
