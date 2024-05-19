@@ -14,15 +14,14 @@ This project is an educational platform similar to Coursera or Udemy, designed t
 
 - Backend: RESTful web services using Microservices architecture.
 - Orchestration/Integration: Docker and Kubernetes.
-- Frontend: Asynchronous web client using a JavaScript framework (React/Angular).
+- Frontend: Asynchronous web client using a JavaScript framework (React).
 
 ## Setup and Deployment
 
-1. **Clone the Repository**: `git clone https://github.com/yourusername/yourrepositoryname.git`
-2. **Navigate to the project directory**: `cd yourrepositoryname`
+1. **Clone the Repository**: `git clone [https://github.com/IT21194726/DS_Assignment_2](https://github.com/IT21194726/DS_Assignment_2).git`
+2. **Navigate to the project directory**: `cd DS_Assignment_2`
 3. **Install Dependencies**: `npm install`
 4. **Start the Application**:
-   - Backend: `npm run start-backend`
    - Frontend: `npm run start-frontend`
 5. **Visit the Application**: Open `http://localhost:3000` in your browser to view the platform.
 
