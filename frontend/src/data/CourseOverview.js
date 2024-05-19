@@ -4,7 +4,7 @@ const CourseOverview = [
 
   {
     "id": 2,
-    "price": 2499,
+    "price": "2499.00",
     "name": "Project Management",
     "overview": "This course introduces you to the fundamental concepts of project management, including planning, execution, and closure. You will gain a comprehensive understanding of how to manage a project from start to finish.",
     "outcomes": [
@@ -260,7 +260,7 @@ const CourseOverview = [
   
   {
     "id": 3,
-    "price": 3999,
+    "price": "3999.00",
     "name": "Python Programming",
     "overview": "This course provides an in-depth understanding of Python programming. It is designed for beginners to intermediate programmers, covering fundamental to advanced topics like data structures, object-oriented programming, and web development with Python.",
     "outcomes": [
@@ -518,7 +518,7 @@ const CourseOverview = [
   
   {
     "id": 1,
-    "price": 2499,
+    "price": "2499.00",
     "name": "Web Development",
     "overview": "This comprehensive course in web development covers both front-end and back-end development. You'll learn to build modern, responsive websites using a range of technologies like HTML, CSS, JavaScript, and back-end frameworks.",
     "outcomes": [
