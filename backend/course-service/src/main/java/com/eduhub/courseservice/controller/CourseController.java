@@ -3,6 +3,7 @@ package com.eduhub.courseservice.controller;
 import com.eduhub.courseservice.common.CommonResponse;
 import com.eduhub.courseservice.dto.CourseDTO;
 import com.eduhub.courseservice.service.CourseService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -63,8 +64,10 @@ public class CourseController {
      * @return success or fail response of course with file save
      */
     @PostMapping("/with-file")
-    public ResponseEntity<CommonResponse> saveCourseWithFile(@Valid @RequestPart("data") CourseDTO courseDTO, @RequestPart("files") List<MultipartFile> files) throws IOException {
-        CommonResponse commonResponse = courseService.saveCourseWithFile(courseDTO, files);
+    public ResponseEntity<CommonResponse> saveCourseWithFile(@Valid @RequestPart("data") String courseDTO, @RequestPart("files") List<MultipartFile> files) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        CourseDTO course = objectMapper.readValue(courseDTO, CourseDTO.class);
+        CommonResponse commonResponse = courseService.saveCourseWithFile(course, files);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
