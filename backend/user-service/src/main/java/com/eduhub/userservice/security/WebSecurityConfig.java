@@ -83,6 +83,7 @@ public class WebSecurityConfig {
           .authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
                   .requestMatchers("/api/test/**").permitAll()
                   .requestMatchers("/api/pdf/**").permitAll()
+                  .requestMatchers("/health/healthCheck/**").permitAll()
                   .requestMatchers("/api/health/medicine/**").permitAll()
                   .requestMatchers("/api/health/doctor/**").permitAll()
                   .requestMatchers("/api/health/patient/**").permitAll()
