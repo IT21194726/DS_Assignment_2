@@ -1,3 +1,4 @@
 FROM openjdk:17-jdk-alpine
-ADD target/instructor-service-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+VOLUME /tmp
+COPY target/instructor-service-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
