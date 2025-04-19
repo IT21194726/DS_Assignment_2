@@ -1,3 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:17-jdk-alpine
+VOLUME /tmp
+COPY target/service-registry-0.0.1-SNAPSHOT.jar service-registry.jar
+ENTRYPOINT ["java","-jar","/service-registry.jar"]
