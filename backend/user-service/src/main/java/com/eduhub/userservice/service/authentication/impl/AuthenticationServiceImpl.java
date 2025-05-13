@@ -9,6 +9,7 @@ import com.eduhub.userservice.entity.authentication.ERole;
 import com.eduhub.userservice.entity.authentication.Role;
 import com.eduhub.userservice.entity.authentication.User;
 import com.eduhub.userservice.exception.ReferenceNotFoundException;
+import com.eduhub.userservice.exception.ValidationException;
 import com.eduhub.userservice.repository.authentication.RoleRepository;
 import com.eduhub.userservice.repository.authentication.UserRepository;
 import com.eduhub.userservice.security.jwt.JwtUtils;
@@ -62,14 +63,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public ResponseEntity<MessageResponse> registerUserDetails(SignupRequest signUpRequest) {
         if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!", new User()));
+            throw new ValidationException(HttpStatus.BAD_REQUEST.value(), "Username is already taken!");
         }
         if (Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!", new User()));
+            throw new ValidationException(HttpStatus.BAD_REQUEST.value(), "Email is already in use!");
         }
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),

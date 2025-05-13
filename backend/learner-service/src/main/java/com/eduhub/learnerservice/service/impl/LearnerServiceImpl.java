@@ -84,13 +84,15 @@ public class LearnerServiceImpl implements LearnerService {
         CommonResponse commonResponse = new CommonResponse();
         ObjectMapper objectMapper = new ObjectMapper();
         LearnerResponseDTO learnerResponseDTO = new LearnerResponseDTO();
-        Optional<Learner> learner = learnerRepository.findById(learnerDTO.getLearnerId());
-        if(learner.isPresent()){
-            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
-            commonResponse.setMessage("Learner details already exist!");
-            commonResponse.setData(learnerMapper.domainToDto(learner.get()));
-            log.warn("Learner details not exist. message : {}", commonResponse.getMessage());
-            return commonResponse;
+        if (learnerDTO.getLearnerId() != null) {
+            Optional<Learner> learner = learnerRepository.findById(learnerDTO.getLearnerId());
+            if(learner.isPresent()){
+                commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+                commonResponse.setMessage("Learner details already exist!");
+                commonResponse.setData(learnerMapper.domainToDto(learner.get()));
+                log.warn("Learner details not exist. message : {}", commonResponse.getMessage());
+                return commonResponse;
+            }
         }
         MessageResponse userResponse = userServiceClient.registerUser(learnerDTO.getSignupRequest()).getBody();
         assert userResponse != null;

@@ -40,4 +40,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ApiErrors errors = new ApiErrors(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), details);
         return ResponseEntity.status(errors.getStatus()).body(errors);
     }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Object> handleException(ValidationException ex) {
+        logg.error("Exception : {}", ex.getMessage());
+        List<String> details = new ArrayList<>();
+        details.add("Object conversion failed in mapper layer");
+        details.add(ex.getMessage());
+        ApiErrors errors = new ApiErrors(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), details);
+        return ResponseEntity.status(errors.getStatus()).body(errors);
+    }
 }

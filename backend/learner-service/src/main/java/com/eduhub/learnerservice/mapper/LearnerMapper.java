@@ -15,6 +15,7 @@ public class LearnerMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The LearnerDTO should not be null");
         }
+        domain.setLearnerId(dto.getLearnerId());
         domain.setFirstName(dto.getFirstName());
         domain.setLastName(dto.getLastName());
         domain.setPhone(dto.getPhone());
