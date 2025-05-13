@@ -74,13 +74,15 @@ public class CourseServiceImpl implements CourseService {
     public CommonResponse saveCourse(CourseDTO courseDTO) throws IOException {
         log.info("CourseServiceImpl.saveCourse method accessed");
         CommonResponse commonResponse = new CommonResponse();
-        Optional<Course> course = courseRepository.findById(courseDTO.getCourseId());
-        if(course.isPresent()){
-            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
-            commonResponse.setMessage("Course details already exist!");
-            commonResponse.setData(courseMapper.domainToDto(course.get()));
-            log.warn("Course save details not exist. message : {}", commonResponse.getMessage());
-            return commonResponse;
+        if (courseDTO.getCourseId() != null) {
+            Course course = courseRepository.findById(courseDTO.getCourseId()).orElse(new Course());
+            if(course.getCourseId() == null){
+                commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+                commonResponse.setMessage("Course details already exist!");
+                commonResponse.setData(courseMapper.domainToDto(course));
+                log.warn("Course save details not exist. message : {}", commonResponse.getMessage());
+                return commonResponse;
+            }
         }
         Course courseSavedDetails = courseRepository.save(courseMapper.dtoToDomain(courseDTO, new Course()));
         commonResponse.setStatus(HttpStatus.CREATED);
