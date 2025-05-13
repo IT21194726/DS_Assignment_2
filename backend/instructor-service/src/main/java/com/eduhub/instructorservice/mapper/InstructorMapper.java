@@ -15,6 +15,7 @@ public class InstructorMapper {
         if (dto == null) {
             throw new ReferenceNotFoundException("The InstructorDTO should not be null");
         }
+        domain.setInstructorId(dto.getInstructorId());
         domain.setFirstName(dto.getFirstName());
         domain.setLastName(dto.getLastName());
         domain.setPhone(dto.getPhone());

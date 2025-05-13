@@ -81,13 +81,15 @@ public class InstructorServiceImpl implements InstructorService {
         CommonResponse commonResponse = new CommonResponse();
         ObjectMapper objectMapper = new ObjectMapper();
         InstructorResponseDTO instructorResponseDTO = new InstructorResponseDTO();
-        Optional<Instructor> instructor = instructorRepository.findById(instructorDTO.getInstructorId());
-        if(instructor.isPresent()){
-            commonResponse.setStatus(HttpStatus.BAD_REQUEST);
-            commonResponse.setMessage("Instructor details already exist!");
-            commonResponse.setData(instructorMapper.domainToDto(instructor.get()));
-            log.warn("Instructor details not exist. message : {}", commonResponse.getMessage());
-            return commonResponse;
+        if (instructorDTO.getInstructorId() != null) {
+            Instructor instructor = instructorRepository.findById(instructorDTO.getInstructorId()).orElse(new Instructor());
+            if(instructor.getInstructorId() == null){
+                commonResponse.setStatus(HttpStatus.BAD_REQUEST);
+                commonResponse.setMessage("Instructor details already exist!");
+                commonResponse.setData(instructorMapper.domainToDto(instructor));
+                log.warn("Instructor details not exist. message : {}", commonResponse.getMessage());
+                return commonResponse;
+            }
         }
         MessageResponse userResponse = userServiceClient.registerUser(instructorDTO.getSignupRequest()).getBody();
         assert userResponse != null;
