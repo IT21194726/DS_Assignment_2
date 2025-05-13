@@ -106,7 +106,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         user.setRoles(roles);
         String userId = sequentialUserByIdGenerator(roles);
-        if(userId.matches("LR-"+LocalDate.now().getYear()+LocalDate.now().getDayOfMonth()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
+        if(userId.matches("LR-"+LocalDate.now().getYear()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
             user.setUserId(userId);
         } else if (userId.matches("AM-"+LocalDate.now().getYear()+Constant.NUMBER_FORMAT_ACTION) && userRepository.findUserByUserIdIgnoreCase(userId).isEmpty()) {
             user.setUserId(userId);
@@ -139,7 +139,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userNumber = Integer.parseInt(userId);
         userNumber++;
         if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_INSTRUCTOR.name())){
-            userId = String.format(Constant.INSTRUCTOR_ID_FORMAT, LocalDate.now().getYear(), LocalDate.now().getDayOfMonth(),userNumber);
+            userId = String.format(Constant.INSTRUCTOR_ID_FORMAT, LocalDate.now().getYear(), userNumber);
         } else if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_LEARNER.name())){
             userId = String.format(Constant.LEARNER_ID_FORMAT, LocalDate.now().getYear(), userNumber);
         } else if (role.stream().findFirst().orElse(new Role()).getName().name().equals(ERole.ROLE_ADMIN.name())) {
